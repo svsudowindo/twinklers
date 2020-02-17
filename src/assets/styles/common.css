@@ -49,9 +49,11 @@
 }
 
 /* font-sizes in px's */
-
-.font-size-100 {
-  font-size: 100px !important;
+.font-size-18 {
+  font-size: 18px !important;
+}
+.font-size-20 {
+  font-size: 20px !important;
 }
 
 .font-size-45 {
@@ -418,6 +420,18 @@
 }
 .m-t-50 {
   margin-top: 50px !important;
+}
+
+.m-t-55 {
+  margin-top: 55px !important;
+}
+
+.m-t-60 {
+  margin-top: 60px !important;
+}
+
+.m-t-65 {
+  margin-top: 65px !important;
 }
 
 .m-b-0 {
