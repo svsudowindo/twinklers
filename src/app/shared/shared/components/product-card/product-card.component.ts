@@ -16,16 +16,23 @@ export class ProductCardComponent implements OnInit {
   @Output()
   removeItem: EventEmitter<any> = new EventEmitter();
 
+  @Output()
+  cardClickEvent: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  incrementProductCount(product) {
-    this.addItem.emit(product);
+  incrementProductCount() {
+    this.addItem.emit(this.product);
   }
 
-  decrementProductCount(product) {
-    this.removeItem.emit(product);
+  decrementProductCount() {
+    this.removeItem.emit(this.product);
+  }
+
+  navigateToDetailedView() {
+    this.cardClickEvent.emit(this.product);
   }
 }

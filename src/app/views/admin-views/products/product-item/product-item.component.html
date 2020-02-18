@@ -1,0 +1,42 @@
+<div class="container-fluid row m-t-30 p-t-20 m-l-0">
+  <div class="card col-md-6 col-sm-12 col-xs-12 col-lg-6">
+    <img [src]="selectedProduct?.imageURL" style="width: 100%;">
+  </div>
+  <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 p-t-20 p-l-10">
+    <p class="title">{{selectedProduct?.name}}</p>
+    <p>&#8377; {{selectedProduct?.cost}}</p>
+    <div class="d-flex justify-content-start">
+      <ng-container *ngFor="let rate of [].constructor(selectedProduct.rating)">
+        <i class="fa fa-star" aria-hidden="true"></i> &nbsp;
+      </ng-container>
+      <ng-container *ngFor="let rate of [].constructor(5 - selectedProduct.rating)">
+        <i class="fa fa-star-o" aria-hidden="true"></i> &nbsp;
+      </ng-container>
+    </div>
+    <hr>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys
+      standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+      type specimen book.</p>
+    <hr>
+    <div class="d-flex justify-content-center position-relative">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <button type="button" class="btn btn-primary">
+          <i class="fa fa-minus"></i>
+        </button>
+        <button class="btn btn-min-block btn-primary">
+          <i class="fa fa-shopping-cart"></i>
+          <span class="p-l-10">Add to Cart</span>
+        </button>
+        <div class="d-flex justify-content-center cart-count">
+            {{selectedProduct?.productCount}}
+          </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fa fa-plus"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <hr>
+</div>

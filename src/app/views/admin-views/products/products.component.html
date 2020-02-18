@@ -1,7 +1,7 @@
 <div class="d-flex m-t-20 justify-content-end acordian">
   <p>
-    <i class="fa fa-filter" aria-hidden="true" (click)="isCollapsed = !isCollapsed"
-    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"></i>
+    <i class="fa fa-filter" aria-hidden="true" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+      aria-controls="collapseExample"></i>
   </p>
 </div>
 
@@ -31,6 +31,9 @@
 
 <div class="d-flex flex-wrap  justify-content-center align-items-center m-t-20">
   <ng-container *ngFor="let product of products; let i = index">
-   <app-product-card [product]="product" (addItem)="incrementProductCount($event, i)" (removeItem)="decrementProductCount($event, i)"></app-product-card>
+    <div>
+      <app-product-card [product]="product" (addItem)="incrementProductCount($event, i)"
+        (removeItem)="decrementProductCount($event, i)" (cardClickEvent)="navigateToProductDetailedView($event)"></app-product-card>
+    </div>
   </ng-container>
 </div>
