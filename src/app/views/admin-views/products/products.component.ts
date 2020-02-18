@@ -91,11 +91,13 @@ export class ProductsComponent implements OnInit {
   }
 
   incrementProductCount(productDetails, index) {
+    console.log(index);
     this.products[index].productCount = this.products[index].productCount + 1;
     this.topBarService.setCartCount(this.products);
   }
 
   decrementProductCount(productDetails, index) {
+    console.log(index);
     this.products[index].productCount = this.products[index].productCount - 1;
     this.topBarService.setCartCount(this.products);
   }
