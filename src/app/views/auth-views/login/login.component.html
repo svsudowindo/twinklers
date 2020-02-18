@@ -13,12 +13,15 @@
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1">
                 </div>
-                <div class="d-flex justify-content-start">
-                    <a href="registration" class="btn btn-link ">Registration</a>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-start">
+                        <a [routerLink]="['../registration']" class="btn btn-link ">Registration</a>
+                    </div>
                     <div class="d-flex justify-content-end">
-                        <a href="forgotpassword" class="btn btn-link">Forgot Password?</a>
+                        <a [routerLink]="['../forgot-password']" class="btn btn-link">Forgot Password?</a>
                     </div>
                 </div>
+
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-outline-success">login</button>
                 </div>
