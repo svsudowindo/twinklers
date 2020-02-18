@@ -42,3 +42,17 @@
     font-size: 30px;
     padding-top: 10px;
 }
+
+.cart-count {
+    border: 1px solid none;
+    background-color: $orange-color;
+    color: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 8px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 1px;
+}

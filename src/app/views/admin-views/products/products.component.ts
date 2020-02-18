@@ -14,7 +14,8 @@ export class ProductsComponent implements OnInit {
       status: 'INSTOCK',
       productCount: 1,
       rating: 3,
-      cost: 200
+      cost: 200,
+      id: 1
     },
     {
       name: 'Product 2',
@@ -22,7 +23,8 @@ export class ProductsComponent implements OnInit {
       status: 'INSTOCK',
       productCount: 2,
       rating: 3,
-      cost: 200
+      cost: 200,
+      id: 2
     },
     {
       name: 'Product 3',
@@ -30,7 +32,8 @@ export class ProductsComponent implements OnInit {
       status: 'INSTOCK',
       productCount: 3,
       rating: 3,
-      cost: 200
+      cost: 200,
+      id: 3
     },
     {
       name: 'Product 4',
@@ -38,7 +41,8 @@ export class ProductsComponent implements OnInit {
       status: 'INSTOCK',
       productCount: 4,
       rating: 3,
-      cost: 200
+      cost: 200,
+      id: 4
     },
     {
       name: 'Product 5',
@@ -46,7 +50,8 @@ export class ProductsComponent implements OnInit {
       status: 'NOSTOCK',
       productCount: 5,
       rating: 3,
-      cost: 200
+      cost: 200,
+      id: 5
     },
     {
       name: 'Product 6',
@@ -54,7 +59,8 @@ export class ProductsComponent implements OnInit {
       status: 'NOSTOCK',
       productCount: 2,
       rating: 3,
-      cost: 200
+      cost: 200,
+      id: 6
     },
     {
       name: 'Product 7',
@@ -62,7 +68,8 @@ export class ProductsComponent implements OnInit {
       status: 'NOSTOCK',
       productCount: 2,
       rating: 3,
-      cost: 200
+      cost: 200,
+      id: 7
     },
     {
       name: 'Product 8',
@@ -70,7 +77,8 @@ export class ProductsComponent implements OnInit {
       status: 'NOSTOCK',
       productCount: 2,
       rating: 3,
-      cost: 200
+      cost: 200,
+      id: 8
     }
   ];
   constructor() { }
@@ -78,4 +86,11 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
   }
 
+  incrementProductCount(productDetails, index) {
+    this.products[index].productCount = this.products[index].productCount + 1;
+  }
+
+  decrementProductCount(productDetails, index) {
+    this.products[index].productCount = this.products[index].productCount - 1;
+  }
 }
