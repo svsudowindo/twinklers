@@ -10,11 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./views/admin-views/dashboard/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () => import('./views/user-views/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
     path: 'products',
-    loadChildren: () => import('./views/admin-views/products/products.module').then(m => m.ProductsModule)
+    loadChildren: () => import('./views/user-views/products/products.module').then(m => m.ProductsModule)
   },
   {
     path: 'my-account/login',

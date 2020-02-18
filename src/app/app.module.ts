@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared/shared.module';
 import { TopbarComponent } from './shared/shared/components/topbar/topbar.component';
+import { AdminProductsListComponent } from './views/admin-views/admin-products-list/admin-products-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopbarComponent
+    TopbarComponent,
+    AdminProductsListComponent
   ],
   imports: [
     BrowserModule,
