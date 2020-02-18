@@ -1,3 +1,4 @@
+import { TopbarService } from './../../../shared/shared/components/topbar/topbar.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +13,7 @@ export class ProductsComponent implements OnInit {
       name: 'Product 1',
       imageURL: 'assets/images/products/product-1.jpg',
       status: 'INSTOCK',
-      productCount: 1,
+      productCount: 0,
       rating: 3,
       cost: 200,
       id: 1
@@ -21,7 +22,7 @@ export class ProductsComponent implements OnInit {
       name: 'Product 2',
       imageURL: '../../../assets/images/products/product-2.jfif',
       status: 'INSTOCK',
-      productCount: 2,
+      productCount: 0,
       rating: 3,
       cost: 200,
       id: 2
@@ -30,7 +31,7 @@ export class ProductsComponent implements OnInit {
       name: 'Product 3',
       imageURL: '../../../assets/images/products/product-3.jfif',
       status: 'INSTOCK',
-      productCount: 3,
+      productCount: 0,
       rating: 3,
       cost: 200,
       id: 3
@@ -39,7 +40,7 @@ export class ProductsComponent implements OnInit {
       name: 'Product 4',
       imageURL: '../../../assets/images/products/product-4.jpg',
       status: 'INSTOCK',
-      productCount: 4,
+      productCount: 0,
       rating: 3,
       cost: 200,
       id: 4
@@ -48,7 +49,7 @@ export class ProductsComponent implements OnInit {
       name: 'Product 5',
       imageURL: '../../../assets/images/products/product-5.jfif',
       status: 'NOSTOCK',
-      productCount: 5,
+      productCount: 0,
       rating: 3,
       cost: 200,
       id: 5
@@ -57,7 +58,7 @@ export class ProductsComponent implements OnInit {
       name: 'Product 6',
       imageURL: '../../../assets/images/products/product-6.jfif',
       status: 'NOSTOCK',
-      productCount: 2,
+      productCount: 0,
       rating: 3,
       cost: 200,
       id: 6
@@ -66,7 +67,7 @@ export class ProductsComponent implements OnInit {
       name: 'Product 7',
       imageURL: '../../../assets/images/products/product-7.jpg',
       status: 'NOSTOCK',
-      productCount: 2,
+      productCount: 0,
       rating: 3,
       cost: 200,
       id: 7
@@ -75,22 +76,27 @@ export class ProductsComponent implements OnInit {
       name: 'Product 8',
       imageURL: '../../../assets/images/products/product-8.jfif',
       status: 'NOSTOCK',
-      productCount: 2,
+      productCount: 0,
       rating: 3,
       cost: 200,
       id: 8
     }
   ];
-  constructor() { }
+  constructor(
+    private topBarService: TopbarService
+  ) { }
 
   ngOnInit() {
+    this.topBarService.setCartCount(this.products);
   }
 
   incrementProductCount(productDetails, index) {
     this.products[index].productCount = this.products[index].productCount + 1;
+    this.topBarService.setCartCount(this.products);
   }
 
   decrementProductCount(productDetails, index) {
     this.products[index].productCount = this.products[index].productCount - 1;
+    this.topBarService.setCartCount(this.products);
   }
 }
