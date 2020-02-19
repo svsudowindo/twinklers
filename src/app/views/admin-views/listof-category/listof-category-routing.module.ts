@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CategoryComponent } from './category.component';
+import { ListofCategoryComponent } from './listof-category.component';
 
 
 const routes: Routes = [
   {
     path:'',
-    component:CategoryComponent
+    component:ListofCategoryComponent
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CategoryRoutingModule { }
+export class ListofCategoryRoutingModule { }
