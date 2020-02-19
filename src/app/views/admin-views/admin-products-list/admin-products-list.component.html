@@ -1,1 +1,47 @@
-<p>admin-products-list works!</p>
+<div class="container main">
+  <div class="row m-b-10 action-buttons">
+    <div class="col-sm-6 m-t-10">
+      <form style="width: 170px">
+        <input matInput placeholder="Search by Name or ID" [(ngModel)]="searchValue"
+          [ngModelOptions]="{standalone: true}" (keyup)="search()">
+      </form>
+    </div>
+    <div class="col-sm-6 text-right">
+      <button type="submit" class="success m-t-10" [routerLink]="['create-product']">Create Product</button>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Updated By</th>
+          <th scope="col">Updated On</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let product of products as i">
+              <th scope="row">{{product.id}}</th>
+            <td>{{product.productName}}</td>
+            <td>{{product.category}}</td>
+            <td>{{product.updatedBy}}</td>
+            <td>{{product.updatedOn}}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="70" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+  <pre>Current page: {{page}}</pre>
+
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+  
+  
+</div>
