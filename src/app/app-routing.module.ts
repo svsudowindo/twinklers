@@ -29,11 +29,11 @@ const routes: Routes = [
     loadChildren: () => import('./views/auth-views/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
   },
   {
-    path: 'category',
+    path: 'admin/category',
     loadChildren: () => import('./views/admin-views/category/category.module').then(m => m.CategoryModule)
   },
   {
-    path: 'listof-category',
+    path: 'admin/listof-category',
     loadChildren: () => import('./views/admin-views/listof-category/listof-category.module').then(m => m.ListofCategoryModule)
   },
   {
