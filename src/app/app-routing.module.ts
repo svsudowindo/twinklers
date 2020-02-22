@@ -29,8 +29,12 @@ const routes: Routes = [
     loadChildren: () => import('./views/auth-views/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
   },
   {
+    path: 'admin/category-list',
+    loadChildren: () => import('./views/admin-views/category-list/category-list.module').then(m => m.CategoryListModule)
+  },
+  {
     path: '**',
-    loadChildren: () => import('./views/page-not-found/page-not-found.module').then (m => m.PageNotFoundModule)
+    loadChildren: () => import('./views/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   },
 
 ];

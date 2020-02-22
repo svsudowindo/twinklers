@@ -11,12 +11,12 @@ import { AdminProductsListComponent } from './views/admin-views/admin-products-l
   declarations: [
     AppComponent,
     TopbarComponent,
-    AdminProductsListComponent
+    AdminProductsListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
