@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ForgotPasswordRoutingModule } from './forgot-password-routing.module';
+import { SharedModule } from 'src/app/shared/shared/shared.module';
+
 
 
 @NgModule({
@@ -11,7 +13,7 @@ import { ForgotPasswordRoutingModule } from './forgot-password-routing.module';
   ],
   imports: [
     CommonModule,
-    ForgotPasswordRoutingModule
+    ForgotPasswordRoutingModule,SharedModule,
   ]
 })
 export class ForgotPasswordModule { }
