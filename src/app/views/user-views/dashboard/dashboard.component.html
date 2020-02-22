@@ -1,11 +1,11 @@
 <ngb-carousel>
-    <ng-container *ngFor="let img of images ">
+    <ng-container *ngFor="let image of images ">
         <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-                <img [src]="img.img" height="560px" width="1366px" alt="Random first slide">
+                <img [src]="image.img" height="560px" width="1366px" alt="Random first slide">
             </div>
             <div class="carousel-caption">
-                <h3>{{img.label}}</h3>
+                <h3>{{image.label}}</h3>
             </div>
         </ng-template>
     </ng-container>

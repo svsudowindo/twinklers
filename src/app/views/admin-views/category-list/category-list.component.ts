@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-listof-category',
-  templateUrl: './listof-category.component.html',
-  styleUrls: ['./listof-category.component.scss']
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.scss']
 })
-export class ListofCategoryComponent implements OnInit {
+export class CategoryListComponent implements OnInit {
   items : any[] = [
     {
       id: '001',
