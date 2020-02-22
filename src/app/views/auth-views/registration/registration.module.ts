@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { RegistrationRoutingModule } from './registration-routing.module';
 import { RegistrationComponent } from './registration.component';
+import { SharedModule } from 'src/app/shared/shared/shared.module';
+
 
 
 @NgModule({
   declarations: [RegistrationComponent],
   imports: [
     CommonModule,
-    RegistrationRoutingModule
+    RegistrationRoutingModule,SharedModule,
   ]
 })
 export class RegistrationModule { }

@@ -33,8 +33,8 @@ const routes: Routes = [
     loadChildren: () => import('./views/auth-views/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
   },
   {
-    path: 'admin/category-list',
-    loadChildren: () => import('./views/admin-views/category-list/category-list.module').then(m => m.CategoryListModule)
+    path: 'admin',
+    loadChildren: () => import('./views/admin-views/admin-dashboard/admin-dashboard.module').then(m => m.AdminDashboardModule)
   },
   {
     path: '**',
