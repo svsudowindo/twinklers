@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {  NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-category',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor() { }
+  constructor( private modal: NgbActiveModal) { }
 
   ngOnInit() {
   }
