@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { CategoryListRoutingModule } from './category-list-routing.module';
@@ -16,7 +15,7 @@ import{ CategoryComponent} from "../category/category.component"
   imports: [
     CommonModule,
     CategoryListRoutingModule,
-    SharedModule,NgbModule
+    SharedModule
   ],
   exports: [CategoryListComponent],
   bootstrap: [CategoryListComponent],
