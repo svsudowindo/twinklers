@@ -10,17 +10,27 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductItemComponent implements OnInit {
   selectedProduct: any;
   productList: any;
+  comments = [
+    {
+      userName: 'K Sai Kumar',
+      rating: 3,
+      comment: 'Awsome .... Super flavour'
+    },
+    {
+      userName: 'K Sai Kumar',
+      rating: 3,
+      comment: 'Awsome .... Super flavour'
+    }
+  ];
   constructor(
     private topBarService: TopbarService,
     private activatedRoute: ActivatedRoute
   ) {
     this.productList = this.topBarService.products;
     const id = +this.activatedRoute.snapshot.params.id;
-    console.log(id);
     const index = this.productList.findIndex(obj => obj.id === id);
     if (index !== -1) {
       this.selectedProduct = this.productList[index];
-      console.log(this.selectedProduct);
     }
   }
 
