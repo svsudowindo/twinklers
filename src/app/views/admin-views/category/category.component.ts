@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared/shared.module';
 import { TopbarComponent } from './shared/shared/components/topbar/topbar.component';
-import {NgbModule,NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -16,7 +15,7 @@ import {NgbModule,NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,NgbModule,NgbAlertModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

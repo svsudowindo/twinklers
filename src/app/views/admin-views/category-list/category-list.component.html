@@ -22,11 +22,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let product of products as i">
-                    <th scope="row">{{product.id}}</th>
-                    <td>{{product.category}}</td>
-                    <td>{{product.CreatedDate}}</td>
-                    <td>{{product.UpdatedDate}}</td>
+                <tr *ngFor="let category of categories ">
+                    <th scope="row">{{category.id}}</th>
+                    <td>{{category.category}}</td>
+                    <td>{{category.CreatedDate}}</td>
+                    <td>{{category.UpdatedDate}}</td>
                 </tr>
             </tbody>
         </table>
