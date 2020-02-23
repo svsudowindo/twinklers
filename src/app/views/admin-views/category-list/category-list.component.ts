@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { CategoryComponent } from '../category/category.component';
 
@@ -15,8 +14,7 @@ export class CategoryListComponent implements OnInit {
     { id: '3', category: 'new year', CreatedDate: '19/02/2020', UpdatedDate: '01/01/2020' },
     { id: '4', category: 'coupples', CreatedDate: '01/01/2020', UpdatedDate: '12/02/2020' },
   ]
-  constructor(private router:Router,
-    private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) { }
   ngOnInit() {
   }
   open() {
