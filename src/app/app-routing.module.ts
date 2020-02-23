@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/user-views/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'admin-products-list',
+    path: 'admin/products-list',
     loadChildren:() => import('./views/admin-views/admin-products-list/admin-products-list.module').then(m => m.AdminProductsListModule)
   },
   {
