@@ -13,10 +13,6 @@ const routes: Routes = [
     loadChildren: () => import('./views/user-views/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'admin/products-list',
-    loadChildren:() => import('./views/admin-views/admin-products-list/admin-products-list.module').then(m => m.AdminProductsListModule)
-  },
-  {
     path: 'products',
     loadChildren: () => import('./views/user-views/products/products.module').then(m => m.ProductsModule)
   },
