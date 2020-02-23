@@ -49,9 +49,11 @@
 }
 
 /* font-sizes in px's */
-
-.font-size-100 {
-  font-size: 100px !important;
+.font-size-150 {
+  font-size: 150px !important;
+}
+.font-size-20 {
+  font-size: 20px !important;
 }
 
 .font-size-45 {
@@ -420,6 +422,23 @@
   margin-top: 50px !important;
 }
 
+.m-t-55 {
+  margin-top: 55px !important;
+}
+
+.m-t-60 {
+  margin-top: 60px !important;
+}
+
+.m-t-65 {
+  margin-top: 65px !important;
+}
+
+
+.m-t-70 {
+  margin-top: 70px !important;
+}
+
 .m-b-0 {
   margin-bottom: 0 !important;
 }
@@ -507,6 +526,9 @@
 
 .m-l-5 {
   margin-left: 5px !important;
+}
+.m-l-16 {
+  margin-left: 16px !important;
 }
 
 .m-l-10 {

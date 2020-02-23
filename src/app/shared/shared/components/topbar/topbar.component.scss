@@ -1,12 +1,37 @@
+@import "variables";
 .navbar-brand {
     font-size: 1rem;
 }
 
+.navbar-brand:focus {
+    outline: none;
+}
+
 .nav {
-    background-color: #689f38;
-    color: white
+    background-color: $choclate-color;
+    color: $white-color;
 }
 
 .navbar-nav {
     flex-direction: row;
-} 
+}
+
+.active {
+    color: darkgrey;
+    text-decoration: underline;
+}
+
+.cart-count {
+    background-color: #ff7e00;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    position: absolute;
+    top: -6px;
+    right: -16px;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+}

@@ -14,7 +14,7 @@ import { TopbarComponent } from './shared/shared/components/topbar/topbar.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
