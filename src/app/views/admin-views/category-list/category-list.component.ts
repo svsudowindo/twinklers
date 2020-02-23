@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { CategoryComponent } from '../category/category.component';
 
 @Component({
   selector: 'app-category-list',
@@ -6,24 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-  items : any[] = [
-    {
-      id: '001',
-      catagory:'general',
-      currentdate: '25122019',
-      updateddate: '15012020'
-    },
-    {
-      id: '002',
-      catagory:'general',
-      currentdate:'19022020',
-      updateddate: '25012020'
-    },
-  ];
-
-  constructor() { }
-
+  products: any[] = [
+    { id: '1',  category: 'geneeral', CreatedDate: '21/02/2020', UpdatedDate: '19/02/2020' },
+    { id: '2',  category: 'birthday', CreatedDate: '12/02/2020', UpdatedDate: '21/02/2020' },
+    { id: '3', category: 'new year', CreatedDate: '19/02/2020', UpdatedDate: '01/01/2020' },
+    { id: '4', category: 'coupples', CreatedDate: '01/01/2020', UpdatedDate: '12/02/2020' },
+  ]
+  constructor(private router:Router,
+    private modalService: NgbModal) { }
   ngOnInit() {
   }
+  open() {
+    const modalRef = this.modalService.open(CategoryComponent, {
+      centered: true,
+      keyboard: false,
+      backdrop: 'static'
+    });
+    modalRef.componentInstance.name = 'World';
+  }
+  
+
+  
+  
 
 }
