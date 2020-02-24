@@ -33,11 +33,10 @@
   div.content {
     margin-left: 200px;
     padding: 1px 16px;
-    height: auto;
-    border: 1px solid black;
-    min-height: 400px;
-    position: fixed;
-    width: 100%;
+    height: 90vh;
+    width: auto;
+    overflow-y: overlay;
+    min-height: 300px;
   }
   
   /* On screens that are less than 700px wide, make the sidebar into a topbar */
