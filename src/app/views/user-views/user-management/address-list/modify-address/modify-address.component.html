@@ -1,0 +1,77 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add New Address</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="btn-group btn-group-toggle d-flex justify-content-between" ngbRadioGroup name="radioBasic" [(ngModel)]="addressType">
+
+      <label [ngClass]="addressType === 'HOME' ? 'address-type-active': 'address-type'" ngbButtonLabel>
+        <input type="radio" ngbButton value="HOME"><i class="fa fa-home"></i> Home
+      </label>
+      <label  [ngClass]="addressType === 'OFFICE' ? 'address-type-active': 'address-type'" ngbButtonLabel>
+        <input type="radio" ngbButton value="OFFICE"><i class="fa fa-building" aria-hidden="true"></i>
+        Office
+      </label>
+      <label  [ngClass]="addressType === 'OTHERS' ? 'address-type-active': 'address-type'" ngbButtonLabel>
+        <input type="radio" ngbButton value="OTHERS"><i class="fa fa-question-circle" aria-hidden="true"></i>
+        Others
+      </label>
+    </div>
+    <div class="form-group">
+      <label>Country</label>
+      <input type="text" class="form-control" placeholder="India" readonly>
+      <div class="input-group-append">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>State</label>
+      <input type="text" class="form-control" placeholder="Enter state name">
+      <div class="input-group-append">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>City</label>
+      <input type="text" class="form-control" placeholder="Enter city name">
+      <div class="input-group-append">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Full name</label>
+      <input type="text" class="form-control" placeholder="Enter full name">
+      <div class="input-group-append">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Mobile number</label>
+      <input type="text" class="form-control" placeholder="Enter mobile number">
+      <div class="input-group-append">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Street Address</label>
+      <input type="text" class="form-control" placeholder="Flat / House No./Floor / Building">
+      <div class="input-group-append">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Landmark</label>
+      <input type="text" class="form-control">
+      <div class="input-group-append">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Pincode</label>
+      <input type="text" class="form-control" placeholder="6 digits [0-9] pincode">
+      <div class="input-group-append">
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
+  <button type="button" class="btn btn-outline-primary " (click)="modal.close('Save click')">Save</button>
+</div>

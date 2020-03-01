@@ -3,12 +3,12 @@
     <div class="col-sm-6 m-t-10">
       <form style="width: 170px">
         <div class="form-group form-inline">
-          <input class="form-control ml-2" placeholder="Search By Name or ID" type="text"/>
-      </div>
-          </form>
+          <input class="form-control ml-2" placeholder="Search By Name or ID" type="text" />
+        </div>
+      </form>
     </div>
     <div class="col-sm-6 text-right">
-    <button type="button" class="btn btn-outline-primary m-t-10" [routerLink]="['create-product']">Create Product</button>
+      <button type="button" class="btn btn-outline-primary m-t-10" [routerLink]="['create-product']">Create Product</button>
     </div>
   </div>
   <div class="table-responsive">
@@ -20,6 +20,7 @@
           <th scope="col">Category</th>
           <th scope="col">Updated By</th>
           <th scope="col">Updated On</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +30,7 @@
           <td>{{product.category}}</td>
           <td>{{product.updatedBy}}</td>
           <td>{{product.updatedOn}}</td>
+          <td><i class="fa fa-trash" aria-hidden="true"></i>
         </tr>
       </tbody>
     </table>
