@@ -20,7 +20,6 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use('/auth', authRoutes.authRoutes);
 app.use('/admin', function(req, res, next) {
     const authToken = req.get('Authorization');
-    console.log(authToken);
     User.find({authToken: authToken}, (userError, userResult) => {
         if (userError) {
               return res.send(Utils.sendResponse(500, null, ['Unable to  fetch User. Please try again'], 'Unable to fetch user. Please try again'));
@@ -32,7 +31,7 @@ app.use('/admin', function(req, res, next) {
     })
 }, adminRoutes.adminRoutes);
 
-mongoose.connect('mongodb://localhost:27017/sow', { useNewUrlParser: true, useUnifiedTopology: true }).then(res => {
+mongoose.connect('mongodb://localhost:27017/twinkler', { useNewUrlParser: true, useUnifiedTopology: true }).then(res => {
   app.listen(APP_CONFIG.PORT, () => {
     console.log('listening', APP_CONFIG.PORT);
   })

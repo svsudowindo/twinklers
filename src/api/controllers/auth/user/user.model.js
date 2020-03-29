@@ -3,15 +3,21 @@ var uniqueValidator = require('mongoose-unique-validator');
 
 var UserSchema = mongoose.Schema({
   firstName: {
-    type: String
+    type: String,
+    default: ''
   },
   lastName: {
-    type: String
+    type: String,
+    default: ''
   },
   email: {
     type: String,
     required: true,
     unique: true
+  },
+  profilePicture: {
+    type: String,
+    default: null
   },
   phoneNumber: {
     type: Number,
@@ -25,48 +31,56 @@ var UserSchema = mongoose.Schema({
     type: String,
     default: ''
   },
+  gender: {
+    gender_id: {
+      type: Number,
+      required: true
+    },
+    name: {
+      type: String
+    }
+  },
   role: {
-    type: String,
-    required: true
+    "role_id": {
+      type: Number,
+      required: true
+    },
+    "name": {
+      type: String
+    }
   },
-  // securityQuestion: {
-  //   type: String,
-  //   required: true
-  // },
-  // securityAnswer: {
-  //   type: String,
-  //   required: true
-  // },
-  licenseeNumber: {
-    type: Number,
-    required: true
-  },
-  businessName: {
-    type: String,
-    required: true
-  },
-  locationName: {
-    type: String
-  },
-  storeName: {
-    type: String,
-    required: true
-  },
-  address: {
-    type: String
-  },
-  city: {
-    type: String,
-    required: true
-  },
-  state: {
-    type: String,
-    required: true
-  },
-  zipcode: {
-    type: String,
-    required: true
-  },
+  addresses: [
+    {
+      type: {
+        type: String,
+        default: ''
+      },
+      country: {
+        type: String,
+        default: ''
+      },
+      state: {
+        type: String,
+        default: ''
+      },
+      city: {
+        type: String,
+        default: ''
+      },
+      street: {
+        type: String,
+        default: ''
+      },
+      landmark: {
+        type: String,
+        default: ''
+      },
+      pincode: {
+        type: Number,
+        default: null
+      }
+    }
+  ],
   authToken: {
     type: String,
     required: true

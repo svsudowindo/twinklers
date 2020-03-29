@@ -17,8 +17,9 @@ exports.createRoles = (req, res, next) => {
                 console.log(rolesResult);
                 return res.send(Utils.sendResponse(200, payload, [], 'Roles Created Successfully')); 
             })
+        } else {
+            return res.send(Utils.sendResponse(200, payload, [], 'Role Already Exist')); 
         }
-        return res.send(Utils.sendResponse(200, payload, [], 'Role Already Exist')); 
     })
 }
 
