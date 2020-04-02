@@ -77,6 +77,7 @@ exports.forgotPassword = (req, res, next) => {
 }
 
 function updatePassword(userRes, req, res, next) {
+  userRes[0].updatedDate = new Date().getMilliseconds();
   User.updateOne({_id: userRes[0]._id}, userRes[0],(passwordUpdateError, passwordSuccess) => {
     if (passwordUpdateError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to Update Password ... Please Try again'], 'Unable to Update Password ... Please Try again'));
@@ -93,7 +94,6 @@ function updatePassword(userRes, req, res, next) {
  * Reset Password by previous password and new password
  */
 exports.resetPassword = (req, res, next) => {
-  console.log(req.body);
   const payload = req.body;
   console.log(payload.password);
   if (payload.confirmPassword !== payload.newPassword) {
@@ -103,11 +103,36 @@ exports.resetPassword = (req, res, next) => {
     if (userError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to fetch User details ... Please Try again'], 'Unable to fetch User details ... Please Try again'));
     }
-    console.log(userRes);
     if (userRes.length <= 0) {
       return res.send(Utils.sendResponse(302, null, ['Please enter the correct password ... Please try again ...'], 'Please enter the correct password ... Please try again ...'));
     }
     userRes[0].password = payload.newPassword;
     updatePassword(userRes, req, res, next);
+  })
+}
+
+exports.updateUserProfile = (req, res, next) => {
+  const payload = req.body;
+  User.find({_id: payload._id, email: payload.email}, (userError, userRes) => {
+    if (userError) {
+      return res.send(Utils.sendResponse(500, null, ['Unable to fetch User details ... Please Try again'], 'Unable to fetch User details ... Please Try again'));
+    }
+    if (userRes.length <= 0) {
+      return res.send(Utils.sendResponse(302, null, ['User does not exist in the system... Please try with valid User'], 'User does not exist in the system... Please try with valid User'));
+    }
+    const updateInfo = Object.assign(userRes[0], payload);
+    updateInfo.updatedDate = new Date().getMilliseconds();
+    console.log(updateInfo);
+    User.updateOne({_id: payload._id},updateInfo, (userUpdateError, userUpdateSuccess) => {
+      if (userUpdateError) {
+        return res.send(Utils.sendResponse(500, null, ['Unable to update User ... Please try again ...'], 'Unable to update User ... Please try again ...'));
+      }
+      if (userUpdateSuccess.nModified === 1) {
+        delete updateInfo.password;
+        return res.send(Utils.sendResponse(200, updateInfo, [], 'User profile Updated Successfully'));
+      } else {
+        return res.send(Utils.sendResponse(500, null, ['Unable to update the user profile ... Please try again...'], 'Unable to update the user profile ... Please try again...'));
+      }
+    })
   })
 }
