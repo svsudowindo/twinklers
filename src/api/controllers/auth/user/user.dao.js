@@ -72,16 +72,42 @@ exports.forgotPassword = (req, res, next) => {
     // emailService.sendMail(emailBody, 'Twinkler ... Forgot Password ', 'Your New Password', 'Please Use following credentials to login', true);
     userRes[0].password = password;
     userRes[0].authToken = authToken;
-    User.updateOne({_id: userRes[0]._id}, userRes[0],(passwordUpdateError, passwordSuccess) => {
-      if (passwordUpdateError) {
-        return res.send(Utils.sendResponse(500, null, ['Unable to Update Password ... Please Try again'], 'Unable to Update Password ... Please Try again'));
-      }
-      if (passwordSuccess && passwordSuccess.nModified === 1) {
-        delete userRes[0].password;
-        return res.send(Utils.sendResponse(200, userRes[0], [], 'User Saved Successfully'));
-      } else {
-        return res.send(Utils.sendResponse(500, null, ['Unable to Update Password ... Please Try again'], 'Unable to Update Password ... Please Try again'));
-      }
-    })
+    updatePassword(userRes, req, res, next);
+  })
+}
+
+function updatePassword(userRes, req, res, next) {
+  User.updateOne({_id: userRes[0]._id}, userRes[0],(passwordUpdateError, passwordSuccess) => {
+    if (passwordUpdateError) {
+      return res.send(Utils.sendResponse(500, null, ['Unable to Update Password ... Please Try again'], 'Unable to Update Password ... Please Try again'));
+    }
+    if (passwordSuccess && passwordSuccess.nModified === 1) {
+      delete userRes[0].password;
+      return res.send(Utils.sendResponse(200, userRes[0], [], 'User Saved Successfully'));
+    } else {
+      return res.send(Utils.sendResponse(500, null, ['Unable to Update Password ... Please Try again'], 'Unable to Update Password ... Please Try again'));
+    }
+  })
+}
+/**
+ * Reset Password by previous password and new password
+ */
+exports.resetPassword = (req, res, next) => {
+  console.log(req.body);
+  const payload = req.body;
+  console.log(payload.password);
+  if (payload.confirmPassword !== payload.newPassword) {
+    return res.send(Utils.sendResponse(401, null, ['New passord and confirm password should be same... Please try again ...'], 'New passord and confirm password should be same... Please try again ...'));
+  }
+  User.find({password: payload.password}, (userError, userRes) => {
+    if (userError) {
+      return res.send(Utils.sendResponse(500, null, ['Unable to fetch User details ... Please Try again'], 'Unable to fetch User details ... Please Try again'));
+    }
+    console.log(userRes);
+    if (userRes.length <= 0) {
+      return res.send(Utils.sendResponse(302, null, ['Please enter the correct password ... Please try again ...'], 'Please enter the correct password ... Please try again ...'));
+    }
+    userRes[0].password = payload.newPassword;
+    updatePassword(userRes, req, res, next);
   })
 }
