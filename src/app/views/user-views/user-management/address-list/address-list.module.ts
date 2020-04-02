@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AddressListRoutingModule } from './address-list-routing.module';
-import { SharedModule } from 'src/app/shared/shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ModifyAddressComponent } from './modify-address/modify-address.component';
 
 
