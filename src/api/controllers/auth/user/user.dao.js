@@ -50,3 +50,38 @@ exports.saveUser = (req, res, next) => {
   })
     
 }
+
+/**
+ * Request a new password by using registered email ID 
+ */
+exports.forgotPassword = (req, res, next) => {
+  const payload = req.body;
+  User.find({email: payload.email}, (userError, userRes) => {
+    if (userError) {
+      return res.send(Utils.sendResponse(500, null, ['Unable to fetch User details ... Please Try again'], 'Unable to fetch User details ... Please Try again'));
+    }
+    if (userRes.length <= 0) {
+      return res.send(Utils.sendResponse(302, null, ['User Does not exist ... Please enter Registered Email'], 'User Does not exist ... Please enter Registered Email'));
+    }
+    const password = Utils.generatePassword(8);
+    const authToken = Utils.generatePassword(36);
+    let emailBody = {
+      email: payload.email,
+      password: password
+    };
+    // emailService.sendMail(emailBody, 'Twinkler ... Forgot Password ', 'Your New Password', 'Please Use following credentials to login', true);
+    userRes[0].password = password;
+    userRes[0].authToken = authToken;
+    User.updateOne({_id: userRes[0]._id}, userRes[0],(passwordUpdateError, passwordSuccess) => {
+      if (passwordUpdateError) {
+        return res.send(Utils.sendResponse(500, null, ['Unable to Update Password ... Please Try again'], 'Unable to Update Password ... Please Try again'));
+      }
+      if (passwordSuccess && passwordSuccess.nModified === 1) {
+        delete userRes[0].password;
+        return res.send(Utils.sendResponse(200, userRes[0], [], 'User Saved Successfully'));
+      } else {
+        return res.send(Utils.sendResponse(500, null, ['Unable to Update Password ... Please Try again'], 'Unable to Update Password ... Please Try again'));
+      }
+    })
+  })
+}

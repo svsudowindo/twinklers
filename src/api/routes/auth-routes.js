@@ -8,6 +8,8 @@ var GenderDAO = require('../controllers/auth/gender/gender.dao');
 
 authRoutes.post('/register', UserDAO.saveUser);
 
+authRoutes.post('/forgot-password', UserDAO.forgotPassword)
+
 authRoutes.post('/login', LoginDAO.login);
 
 authRoutes.get('/get-roles', RolesDAO.getRoles);
