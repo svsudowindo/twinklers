@@ -3,10 +3,11 @@
         <div class="col-sm-6 m-t-10">
             <form style="width: 180px">
                 <div class="form-group">
-                    <input type="text" placeholder="Search by Name or ID" class="form-control">
+                    <input type="text" placeholder="Search by Category or ID" class="form-control">
                 </div>
             </form>
         </div>
+
         <div class="col-sm-6 m-t-10 text-right ">
             <button class="success m-t-10" class="btn btn-outline-primary" (click)="open()">Create Category</button>
         </div>
@@ -17,16 +18,22 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Category</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Updated By</th>
                     <th scope="col">Created Date</th>
                     <th scope="col">Updated Date</th>
+                    <th scope="col">Status</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let category of categories ">
                     <th scope="row">{{category.id}}</th>
                     <td>{{category.category}}</td>
+                    <td>{{category.createdby}}</td>
+                    <td>{{category.updatedby}}</td>
                     <td>{{category.CreatedDate}}</td>
                     <td>{{category.UpdatedDate}}</td>
+                    <td>{{category.status}}</td>
                 </tr>
             </tbody>
         </table>

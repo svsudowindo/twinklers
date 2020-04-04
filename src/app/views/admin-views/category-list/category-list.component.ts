@@ -9,10 +9,10 @@ import { CategoryComponent } from '../category/category.component';
 })
 export class CategoryListComponent implements OnInit {
   categories: any[] = [
-    { id: '1',  category: 'geneeral', CreatedDate: '21/02/2020', UpdatedDate: '19/02/2020' },
-    { id: '2',  category: 'birthday', CreatedDate: '12/02/2020', UpdatedDate: '21/02/2020' },
-    { id: '3', category: 'new year', CreatedDate: '19/02/2020', UpdatedDate: '01/01/2020' },
-    { id: '4', category: 'coupples', CreatedDate: '01/01/2020', UpdatedDate: '12/02/2020' },
+    { id: '1',  category: 'geneeral',createdby:'bharath',updatedby:'vinode', CreatedDate: '21/02/2020', UpdatedDate: '19/02/2020',status:'Active' },
+    { id: '2',  category: 'birthday',createdby:'vipul',updatedby:'babu', CreatedDate: '12/02/2020', UpdatedDate: '21/02/2020',status:'Inactive' },
+    { id: '3', category: 'new year',createdby:'sai',updatedby:'balaji', CreatedDate: '19/02/2020', UpdatedDate: '01/01/2020' ,status:'Inactive'},
+    { id: '4', category: 'coupples',createdby:'vinod',updatedby:'vicky', CreatedDate: '01/01/2020', UpdatedDate: '12/02/2020',status:'Active' },
   ]
   constructor(private modalService: NgbModal) { }
   ngOnInit() {
