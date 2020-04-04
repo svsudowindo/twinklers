@@ -1,0 +1,36 @@
+@import "variables";
+.address-type {
+    border: 1px solid;
+    margin-right: 10px;
+    width: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 12px;
+    box-shadow: none;
+
+}
+
+.address-type-active {
+    background-color: $choclate-color;
+    color: white;
+    border: 1px solid;
+    margin-right: 10px;
+    width: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 12px;
+    box-shadow: none;
+
+}
+
+.address-type-active:focus {
+    box-shadow: none;
+}
+
+.address-type:focus {
+    box-shadow: none;
+}
+
+.modal-body {
+    height: auto;
+}
