@@ -1,25 +1,5 @@
 @import "variables";
 
-.products {
-    margin-top: 80px;
-}
-
-.fa-star {
-    color: orangered;
-}
-
-.in-stock, .no-stock{
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.in-stock .fa-circle {
-    color: darkgreen;
-}
-
-.no-stock .fa-circle {
-    color: red;
-}
 
 .filters {
     width: 286px;

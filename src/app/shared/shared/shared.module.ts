@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 
 @NgModule({
   declarations: [
+    ProductCardComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import {HttpClientModule} from '@angular/common/http';
     NgbModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ProductCardComponent
   ]
 })
 export class SharedModule { }

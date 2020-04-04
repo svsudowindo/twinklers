@@ -1,1 +1,52 @@
-<p>registration works!</p>
+<div class="d-flex flex-wrap  justify-content-center align-items-center">
+    <div class="card m-t-50" style="width: 22rem;">
+        <div class="card-body">
+            <div class="d-flex flex-wrap  justify-content-center align-items-center">
+                <p class="custom">Registration</p>
+            </div>
+            <br>
+            <form>
+                <div class="form-group">
+
+                    <label for="registerEmail">First name </label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail"> Last name </label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email </label>
+                    <input type="email" class="form-control" id="registerEmail">
+                </div>
+                <div class="form-group">
+                    <label for="registerPhonenumber">Phone Number</label>
+                    <input type="number" class="form-control" id="registerPhonenumber">
+                </div>
+                <div class="size" class="form-group">
+                    <select class="btn btn-secondary" class="mydrop">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox"> I agree with terms & conditions</label>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-start">
+                        <a routerLink="/my-account/login" class="btn btn-link ">Login</a>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <a [routerLink]="['/my-account/forgot-password']" class="btn btn-link">Forgot Password?</a>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

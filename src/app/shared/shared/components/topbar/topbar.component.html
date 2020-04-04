@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg nav fixed-top">
+<nav class="navbar navbar-expand-lg nav">
   <div class="container d-flex justify-content-between w-100">
     <ul class="navbar-nav mr-auto d-flex justify-content-between">
       <li class="nav-item pointer">
@@ -9,10 +9,16 @@
       </li>
     </ul>
     <div>
-      <p class="navbar-brand pointer"><i class="fa fa-user" aria-hidden="true"></i>
-        <span class="m-l-5 noselect">My Account</span></p>
-      <p class="navbar-brand pointer"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
-        <span class="m-l-5 noselect">Cart</span></p>
+      <p class="navbar-brand pointer" [routerLink]="['/admin']" routerLinkActive="active"><i class="fa fa-lock" aria-hidden="true"></i>
+        <span class="m-l-5 noselect" >Admin</span></p>
+      <p class="navbar-brand pointer" [routerLink]="['/my-account']" routerLinkActive="active" (click)="navigateToMyAccount()">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span class="m-l-5 noselect" >My Account</span></p>
+      <p class="navbar-brand pointer position-relative">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        <span class="m-l-5 noselect">Cart</span>
+        <span class="cart-count">{{totalCartCount}}</span>
+      </p>
     </div>
   </div>
 </nav>
