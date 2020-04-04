@@ -7,6 +7,8 @@ adminRoutes.post('/reset-password', UserDAO.resetPassword);
 
 adminRoutes.post('/update-profile', UserDAO.updateUserProfile);
 
+adminRoutes.get('/get-user-by-id/:id', UserDAO.getUserByUserId)
+
 adminRoutes.post('/modify-category', CategoryDAO.createCategory);
 
 adminRoutes.get('/get-categories', CategoryDAO.getAllCategories);

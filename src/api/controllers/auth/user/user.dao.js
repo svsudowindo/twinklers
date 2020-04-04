@@ -5,6 +5,9 @@ var ROLES = require('../../../common/services/app.properties').ROLES;
 var RolesModal = require('../roles/roles.model');
 var GenderModal = require('../gender/gender.model');
 
+/**
+ * Create User
+ */
 exports.saveUser = (req, res, next) => {
   let payload = req.body;
   var user = new User(payload);
@@ -111,6 +114,9 @@ exports.resetPassword = (req, res, next) => {
   })
 }
 
+/**
+ * Update Profile 
+ */
 exports.updateUserProfile = (req, res, next) => {
   const payload = req.body;
   User.find({_id: payload._id, email: payload.email}, (userError, userRes) => {
@@ -136,3 +142,40 @@ exports.updateUserProfile = (req, res, next) => {
     })
   })
 }
+/**
+ * User Login
+*/
+exports.login = (req, res, next) => {
+  const payload = req.body;
+  User.find({email: payload.email, password: payload.password}, (loginError, loginSuccess) => {
+    if (loginError) {
+      return res.send(Utils.sendResponse(500, null, ['Unable to Login... Please try again...'], 'Unable to Login ... Please try again...'));
+    }
+    if (loginSuccess.length <= 0) {
+      return res.send(Utils.sendResponse(302, null, ['Please enter valid credentials ...'], 'Please enter valid credentials ...'));
+    }
+    delete loginSuccess[0].password;
+    return res.send(Utils.sendResponse(200, loginSuccess[0], [], 'Login Success...'));    
+  })
+}
+
+/**
+ * Get user details by user id and Authorization Token
+ */
+
+ exports.getUserByUserId = (req, res, next) => {
+   const id = req.params.id;
+   const authToken = req.get('Authorization');
+   console.log(authToken);
+   User.find({_id: id, authToken: authToken}, (userError, userRes) => {
+    if (userError) {
+      return res.send(Utils.sendResponse(500, null, ['Unable to get the user details... Please try again ...'], 'Unable to get the user details... Please try again ...'));
+    }
+    if (userRes.length <= 0) {
+      return res.send(Utils.sendResponse(302, null, ['No user exist ...'], 'No user exist ...'));
+    }
+    delete userRes[0].password;
+    return res.send(Utils.sendResponse(200, userRes[0], [], 'User details fetched Successfully ...'));
+   })
+
+ }
