@@ -2,6 +2,8 @@ var User = require('./user.model');
 var Utils = require('../../../common/services/utils')
 var emailService = require('../../../common/email.config/email.config');
 var ROLES = require('../../../common/services/app.properties').ROLES;
+var ROLE_IDS = require('../../../common/services/app.properties').ROLE_IDS;
+
 var RolesModal = require('../roles/roles.model');
 var GenderModal = require('../gender/gender.model');
 
@@ -98,7 +100,6 @@ function updatePassword(userRes, req, res, next) {
  */
 exports.resetPassword = (req, res, next) => {
   const payload = req.body;
-  console.log(payload.password);
   if (payload.confirmPassword !== payload.newPassword) {
     return res.send(Utils.sendResponse(401, null, ['New passord and confirm password should be same... Please try again ...'], 'New passord and confirm password should be same... Please try again ...'));
   }
@@ -128,7 +129,6 @@ exports.updateUserProfile = (req, res, next) => {
     }
     const updateInfo = Object.assign(userRes[0], payload);
     updateInfo.updatedDate = new Date().getMilliseconds();
-    console.log(updateInfo);
     User.updateOne({_id: payload._id},updateInfo, (userUpdateError, userUpdateSuccess) => {
       if (userUpdateError) {
         return res.send(Utils.sendResponse(500, null, ['Unable to update User ... Please try again ...'], 'Unable to update User ... Please try again ...'));
@@ -166,7 +166,6 @@ exports.login = (req, res, next) => {
  exports.getUserByUserId = (req, res, next) => {
    const id = req.params.id;
    const authToken = req.get('Authorization');
-   console.log(authToken);
    User.find({_id: id, authToken: authToken}, (userError, userRes) => {
     if (userError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to get the user details... Please try again ...'], 'Unable to get the user details... Please try again ...'));
@@ -177,5 +176,27 @@ exports.login = (req, res, next) => {
     delete userRes[0].password;
     return res.send(Utils.sendResponse(200, userRes[0], [], 'User details fetched Successfully ...'));
    })
+ }
 
+ exports.getAllUsers = (req, res, next) => {
+   const id = req.params.id;
+   const authToken = req.get('Authorization');
+   User.find({_id: id, authToken: authToken, "role.role_id": ROLE_IDS.ADMIN}, (userError, userRes) => {
+    if (userError) {
+      return res.send(Utils.sendResponse(500, null, ['Unable to get the user details... Please try again ...'], 'Unable to get the user details... Please try again ...'));
+    }
+    if (userRes.length <= 0) {
+      return res.send(Utils.sendResponse(302, null, ['Invalid User... Please try with admin'], 'Invalid User... Please try with admin'));
+    }
+    User.find({"role.role_id": ROLE_IDS.USER}, (usersListError, usersListSuccess) => {
+      if (usersListError) {
+        return res.send(Utils.sendResponse(500, null, ['Unable to get the user details... Please try again ...'], 'Unable to get the user details... Please try again ...'));
+      }
+      if (usersListSuccess.length <= 0) {
+        return res.send(Utils.sendResponse(302, usersListSuccess, [], 'No Users Exist ... '));
+      }
+      usersListSuccess.forEach(function(v){ delete v.password});
+      return res.send(Utils.sendResponse(200, usersListSuccess, [], 'User details fetched Successfully ...'));
+    })
+   })
  }

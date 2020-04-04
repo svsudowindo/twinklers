@@ -13,4 +13,5 @@ adminRoutes.post('/modify-category', CategoryDAO.createCategory);
 
 adminRoutes.get('/get-categories', CategoryDAO.getAllCategories);
 
+adminRoutes.get('/get-all-users/:id',UserDAO.getAllUsers);
 exports.adminRoutes = adminRoutes;
