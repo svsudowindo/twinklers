@@ -3,7 +3,8 @@ var uniqueValidator = require('mongoose-unique-validator');
 
 var ProductsSchema = mongoose.Schema({
   categoryID: {
-    type: String
+    type: Object,
+    default: null
 },
   id: {
     type: String,
@@ -64,10 +65,10 @@ var ProductsSchema = mongoose.Schema({
     default: (new Date()).getMilliseconds()
   },
   createdBy: {
-    type: String
+    type: Object
   },
   updatedBy: {
-    type: String
+    type: Object
   }
 })
 

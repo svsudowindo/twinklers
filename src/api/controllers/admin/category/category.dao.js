@@ -18,8 +18,8 @@ exports.createCategory =  (req, res, next) => {
             updateCategory(req, res, next, userList[0]);
         } else {
             var category = new CategoryModel(payload);
-            category.createdBy = userList[0];
-            category.updatedBy = userList[0];
+            category.createdBy = userList[0]._id;
+            category.updatedBy = userList[0]._id;
             category.save((saveError, saveResult) => {
                 if (saveError) {
                     if (saveError.errors.id) {
@@ -47,7 +47,7 @@ function updateCategory(req, res, next, user) {
         }
         categoryList[0] = Object.assign(categoryList[0], payload);
         categoryList[0].updatedDate = new Date().getMilliseconds();
-        categoryList[0].updatedBy = user;
+        categoryList[0].updatedBy = user._id;
         CategoryModel.update({_id: payload._id}, payload, (updateError, updateSuccess) => {
             if (updateError) {
                 return res.send(Utils.sendResponse(500, null, ['Something went wrong... unable to Update Category'], 'Something went wrong... unable to Update Category'));
@@ -82,7 +82,34 @@ exports.getAllCategories = (req, res, next) => {
             if (categoryError) {
                 return res.send(Utils.sendResponse(500, null, ['Something went wrong... unable to fetch Categories'], 'Something went wrong... unable to fetch Categories'));
             }
-            return res.send(Utils.sendResponse(200, categoryList, [], 'Categories fectched Successfully'));
+            if (categoryList.length > 0) {
+                const userIDs = categoryList.map(obj => obj.updatedBy);
+                const createdUsers = categoryList.map(obj => obj.createdBy);
+                userIDs.concat(createdUsers);
+                UserModal.find({_id: { "$in" : userIDs}}, (userError, userList) => {
+                    const resultantCategory = [];
+                    categoryList.map(obj => {
+                        const index = userIDs.indexOf(obj.updatedBy);
+                        const createdIndex =  userIDs.indexOf(obj.updatedBy);
+                        if (index !== -1) {
+                            if (userList[index].password) {
+                                delete userList[index].password;
+                            }
+                            obj.updatedBy = userList[index];
+                        }
+                        if (createdIndex !== -1) {
+                            if (userList[createdIndex].password) {
+                                delete userList[createdIndex].password;
+                            }
+                            obj.createdBy = userList[createdIndex];
+                        }
+                        resultantCategory.push(obj);
+                    })
+                return res.send(Utils.sendResponse(200, resultantCategory, [], 'Categories fectched Successfully'));
         })
-    }) 
+    } else {
+        return res.send(Utils.sendResponse(200, categoryList, [], 'Categories fectched Successfully'));
+    }
+    })
+})
 }

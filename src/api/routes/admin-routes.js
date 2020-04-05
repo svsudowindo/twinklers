@@ -8,7 +8,7 @@ adminRoutes.post('/reset-password', UserDAO.resetPassword);
 
 adminRoutes.post('/update-profile', UserDAO.updateUserProfile);
 
-adminRoutes.get('/get-user-by-id/:id', UserDAO.getUserByUserId)
+adminRoutes.get('/get-user-by-id/:id', UserDAO.getUserByUserId);
 
 adminRoutes.post('/modify-category', CategoryDAO.createCategory);
 
@@ -18,6 +18,6 @@ adminRoutes.get('/get-all-users/:id',UserDAO.getAllUsers);
 
 adminRoutes.post('/create-product/:id', ProductDAO.createProduct);
 
-adminRoutes.get('/get-all-products-by-status', ProductDAO.getAllProducts);
+adminRoutes.get('/get-all-products-by-status', ProductDAO.getAllProductsByAdmin);
 
 exports.adminRoutes = adminRoutes;

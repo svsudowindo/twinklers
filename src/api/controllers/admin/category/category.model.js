@@ -26,10 +26,10 @@ var CategorySchema = mongoose.Schema({
     default: (new Date()).getMilliseconds()
   },
   createdBy: {
-      type: {}
+      type: Object
   },
   updatedBy: {
-      type: {}
+      type: Object
   }
 })
 
