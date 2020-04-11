@@ -114,3 +114,18 @@ exports.getAllProductsByAdmin = (req, res, next) => {
         }
     })
 }
+
+/** Get Product By ID by admin */
+
+exports.getProductDetailsByAdminByID = (req, res, next) => {
+    const productID= req.params.productID;
+    ProductsModel.find({id: productID}, (productError, productDetails) => {
+        if (productError) {
+            return res.send(Utils.sendResponse(200, productsList, ['Unable to fetch product details... Please try again ..'], 'Unable to fetch product details... Please try again ..')); 
+        }
+        if (productDetails.length <= 0) {
+            return res.send(Utils.sendResponse(302, null, ['No product Exist..Please try again ..'], 'No product Exist..Please try again ..')); 
+        }
+        return res.send(Utils.sendResponse(200, productDetails[0], [], 'Products list fetched successfully'));  
+    })
+}
