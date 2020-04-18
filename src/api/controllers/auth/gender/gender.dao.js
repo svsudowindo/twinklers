@@ -34,6 +34,6 @@ exports.getGenders = (req,res, next) => {
         if (genderResult.length <= 0) {
             return res.send(Utils.sendResponse(400, null, ['No Genders Exist'], 'No genders Exist'));
         }
-        return res.send(Utils.sendResponse(200, genderResult, [], 'Gender Already Exist')); 
+        return res.send(Utils.sendResponse(200, genderResult, [], 'Genders Fetched Successfully')); 
     })
 }

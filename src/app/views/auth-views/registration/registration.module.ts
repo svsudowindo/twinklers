@@ -12,6 +12,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     RegistrationRoutingModule,SharedModule,
+    SharedModule
   ]
 })
 export class RegistrationModule { }
