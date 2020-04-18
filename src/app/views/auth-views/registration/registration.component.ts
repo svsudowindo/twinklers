@@ -100,8 +100,7 @@ export class RegistrationComponent extends BaseClass implements OnInit {
         } else {
           // success
           alert('You have registered Successfully');
-          
-          this.router.navigate(['login']);
+          this.router.navigate(['my-account', 'login']);
         }
       });
   }
