@@ -1,28 +1,23 @@
+import { CommonService } from './../common/common.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import Utils from '../common/utils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CanActivateService {
-  private canLogin = true; // Used for activating and deactivating the children components
-  constructor(private _router: Router) { }
+  constructor(
+    private router: Router,
+    private commonService: CommonService) { }
 
-  // Decide's weather the route need to be activated or not by returinging true or false
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.canLogin) {
-      return true;
+    const userInfo = this.commonService.getUserInfo();
+    console.log(userInfo);
+    if (Utils.isValidInput(userInfo) && Utils.isValidInput(userInfo.authToken)) {
+      this.router.navigate(['my-account', 'user-management']);
     } else {
-      this._router.navigate(['login']);
+      return true;
     }
-  }
-
-  // set's can activate status
-  setLoginStatus(isLogin: boolean) {
-    this.canLogin = isLogin;
-  }
-  // get's can activate status
-  getLoginStatus() {
-    return this.canLogin;
   }
 }

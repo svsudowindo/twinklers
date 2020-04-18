@@ -5,7 +5,6 @@ import { BaseClass } from './../../../shared/services/common/baseClass';
 import { Component, OnInit, Injector } from '@angular/core';
 import Utils from 'src/app/shared/services/common/utils';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from 'src/app/shared/services/common/validators';
 import { VALIDATION_PATTERNS } from 'src/app/shared/constants/validation-patterns';
 
 @Component({
@@ -41,9 +40,8 @@ export class RegistrationComponent extends BaseClass implements OnInit {
     public injector: Injector,
     private commonRequestService: CommonRequestService,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private storageService: Storage) {
-    super(injector);
+    private router: Router) {
+    super();
   }
 
   ngOnInit() {

@@ -10,6 +10,12 @@ export const RequestEnums = {
         path: '/auth/genders-list',
         keys: [],
         values: []
+    },
+    LOGIN: {
+        type: 'POST',
+        path: '/auth/login',
+        keys: [],
+        values: []
     }
 };
 

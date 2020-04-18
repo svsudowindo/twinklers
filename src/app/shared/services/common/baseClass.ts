@@ -7,16 +7,8 @@ import { FormGroup, FormArray, FormControl } from '@angular/forms';
 @Injectable()
 export class BaseClass implements OnInit {
 
-  private basePage: any;
-  public pageLoaded = false;
-  private globalVariablesForBaseClass: GlobalVariables;
-  private routerForBaseClass: Router;
-  public notAvailable = 'N/A';
 
-  constructor(public injector: Injector) {
-    this.globalVariablesForBaseClass = injector.get(GlobalVariables);
-    this.routerForBaseClass = injector.get(Router);
-    this.pageLoaded = false;
+  constructor() {
   }
 
   // tslint:disable-next-line:contextual-lifecycle
@@ -24,16 +16,8 @@ export class BaseClass implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  setPage(page) {
-    this.basePage = page;
-  }
-
   isValidInput(input) {
     return Utils.isValidInput(input);
-  }
-
-  goToPage(pageName) {
-    this.routerForBaseClass.navigateByUrl(pageName);
   }
 
   /**

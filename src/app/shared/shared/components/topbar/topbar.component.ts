@@ -1,3 +1,4 @@
+import { CommonService } from './../../../services/common/common.service';
 import { Component, OnInit } from '@angular/core';
 import { TopbarService } from './topbar.service';
 import { Router } from '@angular/router';
@@ -9,12 +10,20 @@ import { Router } from '@angular/router';
 })
 export class TopbarComponent implements OnInit {
   totalCartCount = 0;
+  currentUser: any;
   constructor(
     private topbarService: TopbarService,
-    private router: Router
+    private router: Router,
+    private commonService: CommonService
   ) {
     this.topbarService.cartCountSubject.subscribe(res => {
       this.totalCartCount = res;
+    });
+    this.topbarService.userInfoChanged.subscribe(res => {
+      if (res) {
+        this.currentUser = this.commonService.getUserInfo();
+        console.log(this.currentUser);
+      }
     });
   }
 
