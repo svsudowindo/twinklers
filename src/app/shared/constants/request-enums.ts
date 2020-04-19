@@ -23,5 +23,11 @@ export const RequestEnums = {
         keys: [],
         values: []
     },
+    UPLOAD_IMAGE_GET_URL: {
+        type: 'POST',
+        path: '/common/image-uploader',
+        keys: [],
+        values: []
+    }
 };
 

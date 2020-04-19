@@ -102,11 +102,13 @@ export class CommonHttpService {
     }
 
     // To execute any Http service request
-    public sendReciveService(requestObj: any,
-        body: Object = {},
+    public sendReciveService(
+        requestObj: any,
+        body = {},
         params: HttpParams = new HttpParams(),
         customHeaders?: HttpHeaders): Observable<any> {
-        const requestOptions = customHeaders ? { headers: customHeaders } : {};
+        const requestOptions = {};
+        requestOptions['headers'] = customHeaders ? customHeaders : {};
         requestOptions['params'] = params;
         switch (requestObj.type) {
             case 'GET': {

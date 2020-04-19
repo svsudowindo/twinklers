@@ -3,9 +3,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var app = express();
 var cors = require('cors');
-
 var authRoutes = require('./routes/auth-routes');
-
 var adminRoutes = require('./routes/admin-routes');
 
 var userRoutes = require('./routes/user-routes');
@@ -17,6 +15,7 @@ var Utils = require('./common/services/utils');
 
 var ROLE_IDS = require('./common/services/app.properties').ROLE_IDS
 app.use(cors());
+app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({limit: '50mb'}));

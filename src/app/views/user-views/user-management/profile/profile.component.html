@@ -3,8 +3,9 @@
         <div class="card-body">
             <div class="d-flex justify-content-center">
                 <div>
-                    <input type="file" id="img" hidden (change)="profileChange($event)">
+                    <input type="file" id="img" hidden (change)="profileChange($event)" accept=".png, .jpg, .jpeg" multiple>
                     <label for="img">
+                        <!-- <img src="http://localhost:4500/public/uploads/6696191879ab741c1316122dfe325df3285.png" class="img"/> -->
                         <img [src]="profileImage" class="img" />
                     </label>
                 </div>

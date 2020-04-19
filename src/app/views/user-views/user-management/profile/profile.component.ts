@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BaseClass } from './../../../../shared/services/common/baseClass';
 import { CommonService } from './../../../../shared/services/common/common.service';
@@ -109,7 +110,28 @@ export class ProfileComponent extends BaseClass implements OnInit {
     });
   }
 
-  profileChange() {
-    
+  profileChange(ev) {
+    console.log(ev.target.files);
+    const formData = new FormData();
+    const files = ev.target.files as Array<File>;
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < files.length; i++) {
+      formData.append('files', files[i], files[i].name);
+    }
+    const headers = new HttpHeaders({'Content-Type':'multipart/form-data'});
+    this.commonRequestService.request(RequestEnums.UPLOAD_IMAGE_GET_URL, formData, null, headers).subscribe(res => {
+      if (res.errors.length > 0) {
+        // error
+        return;
+      } else if (res.status !== 200 || !Utils.isValidInput(res.data)) {
+        // error
+        return;
+      } else {
+        // success
+        alert('Updated Successfully');
+        this.profileImage = res.data.fileUrl;
+        console.log(this.profileImage);
+      }
+    })
   }
 }
