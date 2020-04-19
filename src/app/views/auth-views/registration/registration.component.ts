@@ -66,7 +66,6 @@ export class RegistrationComponent extends BaseClass implements OnInit {
       isTermsAndConditionsAccepted: [null, Validators.compose([Validators.required])]
     });
   }
-
   /**
    * Get gender list
    */

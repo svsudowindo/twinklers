@@ -2,6 +2,7 @@ import { CommonService } from './../common/common.service';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import Utils from '../common/utils';
 
 @Injectable()
 export class HeaderInterceptorsService {
@@ -14,9 +15,12 @@ export class HeaderInterceptorsService {
     const defaultHeaders = {
       'Content-Type': 'application/json; charset=UTF-8'
     };
-    const authToken = this.commonService.getUserInfo().authToken;
-    if (authToken) {
-      defaultHeaders['Authorization'] = authToken;
+    const userInfo =  this.commonService.getUserInfo();
+    if (Utils.isValidInput(userInfo)) {
+      const authToken =userInfo.authToken;
+      if (authToken) {
+        defaultHeaders['Authorization'] = authToken;
+      }
     }
     if (req.headers.keys().length > 0) {   // This replaces default headers if any headers passed at the request time
       req.headers.keys().forEach((headerKey) => {

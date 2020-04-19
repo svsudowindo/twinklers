@@ -1,6 +1,7 @@
 import { UserManagementComponent } from './user-management.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CanActivateService } from 'src/app/shared/services/guard-services/can-activate.service';
 
 
 const routes: Routes = [

@@ -20,10 +20,7 @@ export class TopbarComponent implements OnInit {
       this.totalCartCount = res;
     });
     this.topbarService.userInfoChanged.subscribe(res => {
-      if (res) {
         this.currentUser = this.commonService.getUserInfo();
-        console.log(this.currentUser);
-      }
     });
   }
 

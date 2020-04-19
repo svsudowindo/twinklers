@@ -16,6 +16,12 @@ export const RequestEnums = {
         path: '/auth/login',
         keys: [],
         values: []
-    }
+    },
+    UPDATE_USER_PROFILE: {
+        type: 'POST',
+        path: '/common/update-profile',
+        keys: [],
+        values: []
+    },
 };
 

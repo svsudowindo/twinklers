@@ -13,7 +13,6 @@ export class CanActivateService {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const userInfo = this.commonService.getUserInfo();
-    console.log(userInfo);
     if (Utils.isValidInput(userInfo) && Utils.isValidInput(userInfo.authToken)) {
       this.router.navigate(['my-account', 'user-management']);
     } else {
