@@ -48,6 +48,7 @@ export class ProfileComponent extends BaseClass implements OnInit {
     super();
     this.commonService.checkAndLogout();
     this.userInfo = this.commonService.getUserInfo();
+    console.log(this.userInfo);
   }
 
   ngOnInit() {
@@ -75,6 +76,7 @@ export class ProfileComponent extends BaseClass implements OnInit {
   }
   prefillUserInfo() {
     this.profileForm.patchValue(this.userInfo);
+    this.profileImage = this.userInfo.profilePicture;
   }
   /**
    * Get gender list
@@ -104,7 +106,6 @@ export class ProfileComponent extends BaseClass implements OnInit {
         return;
       } else {
         // success
-        alert('Updated Successfully');
         this.commonService.setUserInfo(res.data);
       }
     });
@@ -130,7 +131,8 @@ export class ProfileComponent extends BaseClass implements OnInit {
         // success
         alert('Updated Successfully');
         this.profileImage = res.data.fileUrl;
-        console.log(this.profileImage);
+        this.profileForm.get('profilePicture').setValue(this.profileImage);
+        this.updateUserProfile();
       }
     })
   }

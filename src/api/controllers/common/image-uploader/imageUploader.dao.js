@@ -5,7 +5,6 @@ var path = require('path');
 exports.uploadImageAndGetURL = (req, res, next) => {
 
     var tmp_path = req.file.path;
-    console.log(req.file);
     const splitForExtention = req.file.originalname.split('.')
     const ext = splitForExtention[splitForExtention.length - 1];
     /** The original name of the uploaded file
