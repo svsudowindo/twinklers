@@ -39,7 +39,7 @@ export class ProfileComponent extends BaseClass implements OnInit {
     ]
   };
   userInfo: any;
-  profileImage = '/assets/images/profile/pic.jpg';
+  profileImage = '/assets/images/profile/default-profile.jpg';
   constructor(
     private commonRequestService: CommonRequestService,
     private formBuilder: FormBuilder,
@@ -48,7 +48,6 @@ export class ProfileComponent extends BaseClass implements OnInit {
     super();
     this.commonService.checkAndLogout();
     this.userInfo = this.commonService.getUserInfo();
-    console.log(this.userInfo);
   }
 
   ngOnInit() {
@@ -134,6 +133,11 @@ export class ProfileComponent extends BaseClass implements OnInit {
         this.profileForm.get('profilePicture').setValue(this.profileImage);
         this.updateUserProfile();
       }
-    })
+    });
+  }
+
+  imgError() {
+    console.log('img error');
+    this.profileImage = '/assets/images/profile/default-profile.jpg';
   }
 }

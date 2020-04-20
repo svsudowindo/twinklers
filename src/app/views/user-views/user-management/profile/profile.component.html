@@ -5,7 +5,7 @@
                 <div>
                     <input type="file" id="img" hidden (change)="profileChange($event)" accept=".png, .jpg, .jpeg" multiple>
                     <label for="img">
-                        <img [src]="profileImage" class="img" />
+                        <img [src]="profileImage" class="img" (error)="imgError()"/>
                     </label>
                 </div>
             </div>
