@@ -28,6 +28,12 @@ export const RequestEnums = {
         path: '/common/image-uploader',
         keys: [],
         values: []
+    },
+    CREATE_CATEGORY: {
+        type: 'POST',
+        path: '/admin/modify-category',
+        keys: [],
+        values: []
     }
 };
 
