@@ -13,4 +13,9 @@ export const STATUS = [
         value: false,
         label: 'INACTIVE'
     }
-]
+];
+
+export const POPUP_RESPONSE = {
+    SUCCESS: 'success',
+    CANCEL: 'cancel'
+}

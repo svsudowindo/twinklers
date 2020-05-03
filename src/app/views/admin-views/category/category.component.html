@@ -1,39 +1,40 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Category</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
+  <h4 class="modal-title" id="modal-basic-title">Category</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <div class="modal-body">
-    <form [formGroup]="categoryForm">
-        <div class="form-group h-px-75">
-            <label for="category id">Category Id</label>
-            <input type="text" class="form-control" id="category id" placeholder="Enter The Category Id" formControlName="id">
-            <p class="error" *ngIf="isValidField(categoryForm, 'id')">
-                {{getErrorMessage(categoryForm, validationMessages, 'id')}}
-            </p>
-        </div>
-        <div class="form-group h-px-75">
-            <label for="category">Enter Category Name</label>
-            <input type="text" class="form-control" id="category" formControlName="name">
-            <p class="error" *ngIf="isValidField(categoryForm, 'name')">
-                {{getErrorMessage(categoryForm, validationMessages, 'name')}}
-            </p>
-        </div>
-        <div class="form-group h-px-75">
-            <label>Status</label>
-            <select class="custom-select"  required formControlName="active">
-                <option value="">Select Status</option>
-                <option [value]="status.value" *ngFor="let status of statusList">{{status.label}}</option>
-            </select>
-            <p class="error" *ngIf="isValidField(categoryForm, 'active')">
-                {{getErrorMessage(categoryForm, validationMessages, 'active')}}
-            </p>
-        </div>
-        <br>
-    </form>
+  <form [formGroup]="categoryForm">
+    <div class="form-group h-px-75">
+      <label for="category id">Category Id</label>
+      <input type="text" class="form-control" id="category id" placeholder="Enter The Category Id" formControlName="id">
+      <p class="error" *ngIf="isValidField(categoryForm, 'id')">
+        {{getErrorMessage(categoryForm, validationMessages, 'id')}}
+      </p>
+    </div>
+    <div class="form-group h-px-75">
+      <label for="category">Enter Category Name</label>
+      <input type="text" class="form-control" id="category" formControlName="name">
+      <p class="error" *ngIf="isValidField(categoryForm, 'name')">
+        {{getErrorMessage(categoryForm, validationMessages, 'name')}}
+      </p>
+    </div>
+    <div class="form-group h-px-75">
+      <label>Status</label>
+      <select class="custom-select" required formControlName="active">
+        <option value="">Select Status</option>
+        <option [value]="status.value" *ngFor="let status of statusList">{{status.label}}</option>
+      </select>
+      <p class="error" *ngIf="isValidField(categoryForm, 'active')">
+        {{getErrorMessage(categoryForm, validationMessages, 'active')}}
+      </p>
+    </div>
+    <br>
+  </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="saveCategory()" [disabled]="categoryForm.invalid">Save</button>
+  <button type="button" class="btn btn-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
+  <button type="button" class="btn btn-primary" (click)="saveCategory()"
+    [disabled]="categoryForm.invalid">{{isEditMode ? 'Update' : 'Save'}}</button>
 </div>

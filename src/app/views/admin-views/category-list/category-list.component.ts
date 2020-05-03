@@ -1,6 +1,10 @@
+import { POPUP_RESPONSE } from './../../../shared/constants/gloabal-variable-enums';
+import { RequestEnums } from './../../../shared/constants/request-enums';
+import { CommonRequestService } from './../../../shared/services/http/common-request.service';
 import { Component, OnInit } from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryComponent } from '../category/category.component';
+import Utils from 'src/app/shared/services/common/utils';
 
 @Component({
   selector: 'app-category-list',
@@ -8,26 +12,41 @@ import { CategoryComponent } from '../category/category.component';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-  categories: any[] = [
-    { id: '1',  category: 'geneeral',createdby:'bharath',updatedby:'vinode', CreatedDate: '21/02/2020', UpdatedDate: '19/02/2020',status:'Active' },
-    { id: '2',  category: 'birthday',createdby:'vipul',updatedby:'babu', CreatedDate: '12/02/2020', UpdatedDate: '21/02/2020',status:'Inactive' },
-    { id: '3', category: 'new year',createdby:'sai',updatedby:'balaji', CreatedDate: '19/02/2020', UpdatedDate: '01/01/2020' ,status:'Inactive'},
-    { id: '4', category: 'coupples',createdby:'vinod',updatedby:'vicky', CreatedDate: '01/01/2020', UpdatedDate: '12/02/2020',status:'Active' },
-  ]
-  constructor(private modalService: NgbModal) { }
+  categories: any[] = [];
+  constructor(
+    private modalService: NgbModal,
+    private commonRequestService: CommonRequestService) { }
   ngOnInit() {
+    this.getCategoryList();
   }
-  open() {
+  open(category?: any) {
     const modalRef = this.modalService.open(CategoryComponent, {
       centered: true,
       keyboard: false,
       backdrop: 'static'
     });
-    modalRef.componentInstance.name = 'World';
+    if (Utils.isValidInput(category)) {
+      modalRef.componentInstance.categoryDetails = category;
+    }
+    modalRef.result.then(res => {
+      if (res === POPUP_RESPONSE.SUCCESS) {
+        this.getCategoryList();
+      }
+    });
   }
-  
 
-  
-  
-
+  private getCategoryList() {
+    this.commonRequestService.request(RequestEnums.GET_CATEGORY_LIST).subscribe(res => {
+      if (res.errors.length > 0) {
+        // error
+        return;
+      } else if (res.status !== 200 || !Utils.isValidInput(res.data)) {
+        // error
+        return;
+      } else {
+        // success
+        this.categories = res.data;
+      }
+    });
+  }
 }

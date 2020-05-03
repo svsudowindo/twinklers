@@ -17,51 +17,66 @@ var ROLE_IDS = require('./common/services/app.properties').ROLE_IDS
 app.use(cors());
 app.use(express.static('public'));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
 
 app.use('/auth', authRoutes.authRoutes);
-app.use('/admin', function(req, res, next) {
-    const authToken = req.get('Authorization');
-    User.find({authToken: authToken, "role.role_id": ROLE_IDS.ADMIN}, (userError, userResult) => {
-        if (userError) {
-              return res.send(Utils.sendResponse(500, null, ['Unable to  fetch User. Please try again'], 'Unable to fetch user. Please try again'));
-          }
-          if (userResult.length <= 0) {
-            return res.send(Utils.sendResponse(401, null, ['Unauthorized User'], 'Unauthorized User. Please try again'));
-        }
-        next();
-    })
+app.use('/admin', function (req, res, next) {
+  const authToken = req.get('Authorization');
+  User.find({
+    authToken: authToken,
+    "role.role_id": ROLE_IDS.ADMIN
+  }, (userError, userResult) => {
+    if (userError) {
+      return res.send(Utils.sendResponse(500, null, ['Unable to  fetch User. Please try again'], 'Unable to fetch user. Please try again'));
+    }
+    if (userResult.length <= 0) {
+      return res.send(Utils.sendResponse(401, null, ['Unauthorized User'], 'Unauthorized User. Please try again'));
+    }
+    next();
+  })
 }, adminRoutes.adminRoutes);
 
-app.use('/user', function(req, res, next) {
+app.use('/user', function (req, res, next) {
   const authToken = req.get('Authorization');
-  User.find({authToken: authToken, "role.role_id": ROLE_IDS.USER}, (userError, userResult) => {
-      if (userError) {
-            return res.send(Utils.sendResponse(500, null, ['Unable to  fetch User. Please try again'], 'Unable to fetch user. Please try again'));
-        }
-        if (userResult.length <= 0) {
-          return res.send(Utils.sendResponse(401, null, ['Unauthorized User'], 'Unauthorized User. Please try again'));
-      }
-      next();
+  User.find({
+    authToken: authToken,
+    "role.role_id": ROLE_IDS.USER
+  }, (userError, userResult) => {
+    if (userError) {
+      return res.send(Utils.sendResponse(500, null, ['Unable to  fetch User. Please try again'], 'Unable to fetch user. Please try again'));
+    }
+    if (userResult.length <= 0) {
+      return res.send(Utils.sendResponse(401, null, ['Unauthorized User'], 'Unauthorized User. Please try again'));
+    }
+    next();
   })
 }, userRoutes.userRoutes);
 
 
-app.use('/common', function(req, res, next) {
+app.use('/common', function (req, res, next) {
   const authToken = req.get('Authorization');
-  User.find({authToken: authToken}, (userError, userResult) => {
-      if (userError) {
-            return res.send(Utils.sendResponse(500, null, ['Unable to  fetch User. Please try again'], 'Unable to fetch user. Please try again'));
-        }
-        if (userResult.length <= 0) {
-          return res.send(Utils.sendResponse(401, null, ['Unauthorized User'], 'Unauthorized User. Please try again'));
-      }
-      next();
+  User.find({
+    authToken: authToken
+  }, (userError, userResult) => {
+    if (userError) {
+      return res.send(Utils.sendResponse(500, null, ['Unable to  fetch User. Please try again'], 'Unable to fetch user. Please try again'));
+    }
+    if (userResult.length <= 0) {
+      return res.send(Utils.sendResponse(401, null, ['Unauthorized User'], 'Unauthorized User. Please try again'));
+    }
+    next();
   })
 }, commonRoutes.commonRoutes);
 
-mongoose.connect('mongodb://localhost:27017/twinkler', { useNewUrlParser: true, useUnifiedTopology: true }).then(res => {
+mongoose.connect('mongodb://localhost:27017/twinkler', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(res => {
   app.listen(APP_CONFIG.PORT, () => {
     console.log('listening', APP_CONFIG.PORT);
   })

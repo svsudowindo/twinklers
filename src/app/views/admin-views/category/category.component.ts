@@ -1,9 +1,9 @@
 import { RequestEnums } from './../../../shared/constants/request-enums';
 import { CommonRequestService } from './../../../shared/services/http/common-request.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {  STATUS } from './../../../shared/constants/gloabal-variable-enums';
+import { STATUS, POPUP_RESPONSE } from './../../../shared/constants/gloabal-variable-enums';
 import { Component, OnInit } from '@angular/core';
-import {  NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BaseClass } from 'src/app/shared/services/common/baseClass';
 import Utils from 'src/app/shared/services/common/utils';
 
@@ -16,23 +16,25 @@ import Utils from 'src/app/shared/services/common/utils';
 export class CategoryComponent extends BaseClass implements OnInit {
   statusList = STATUS;
   categoryForm: FormGroup;
+  categoryDetails: any;
+  isEditMode = false;
   validationMessages = {
     id: [
-      {type: 'required', message: 'Category id is required'}
+      { type: 'required', message: 'Category id is required' }
     ],
     name: [
-      {type: 'required', message: 'Category Name is required'}
+      { type: 'required', message: 'Category Name is required' }
     ],
     active: [
-      {type: 'required', message: 'Category Status is required'}
+      { type: 'required', message: 'Category Status is required' }
     ]
   };
   constructor(
     private modal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private commonRequestService: CommonRequestService) {
-      super();
-    }
+    super();
+  }
 
   ngOnInit() {
     this.initCategoryGroup();
@@ -44,6 +46,10 @@ export class CategoryComponent extends BaseClass implements OnInit {
       active: ['', Validators.compose([Validators.required])],
       _id: [null]
     });
+    if (Utils.isValidInput(this.categoryDetails)) {
+      this.isEditMode = true;
+      this.categoryForm.patchValue(this.categoryDetails);
+    }
   }
 
   saveCategory() {
@@ -61,7 +67,7 @@ export class CategoryComponent extends BaseClass implements OnInit {
       } else {
         // success
         alert(res.message);
-        this.modal.close('Saved Successfully');
+        this.modal.close(POPUP_RESPONSE.SUCCESS);
       }
     });
   }
