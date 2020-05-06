@@ -49,38 +49,36 @@ var UserSchema = mongoose.Schema({
       type: String
     }
   },
-  addresses: [
-    {
-      type: {
-        type: String,
-        default: ''
-      },
-      country: {
-        type: String,
-        default: ''
-      },
-      state: {
-        type: String,
-        default: ''
-      },
-      city: {
-        type: String,
-        default: ''
-      },
-      street: {
-        type: String,
-        default: ''
-      },
-      landmark: {
-        type: String,
-        default: ''
-      },
-      pincode: {
-        type: Number,
-        default: null
-      }
+  addresses: [{
+    type: {
+      type: String,
+      default: ''
+    },
+    country: {
+      type: String,
+      default: ''
+    },
+    state: {
+      type: String,
+      default: ''
+    },
+    city: {
+      type: String,
+      default: ''
+    },
+    street: {
+      type: String,
+      default: ''
+    },
+    landmark: {
+      type: String,
+      default: ''
+    },
+    pincode: {
+      type: Number,
+      default: null
     }
-  ],
+  }],
   authToken: {
     type: String,
     required: true

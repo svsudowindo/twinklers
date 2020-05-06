@@ -13,14 +13,18 @@ var GenderModal = require('../gender/gender.model');
 exports.saveUser = (req, res, next) => {
   let payload = req.body;
   var user = new User(payload);
-  RolesModal.find({role_id: payload.role.role_id}, (rolesError, rolesResult) => {
+  RolesModal.find({
+    role_id: payload.role.role_id
+  }, (rolesError, rolesResult) => {
     if (rolesError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to fetch roles'], 'Unable to fetch roles'));
     }
     if (rolesResult.length <= 0) {
       return res.send(Utils.sendResponse(404, null, ['No Role exist with specified role id'], 'No Role exist with specified role id'));
     }
-    GenderModal.find({gender_id: payload.gender.gender_id}, (genderError, genderResult) => {
+    GenderModal.find({
+      gender_id: payload.gender.gender_id
+    }, (genderError, genderResult) => {
       if (genderError) {
         return res.send(Utils.sendResponse(500, null, ['Unable to fetch gender'], 'Unable to fetch gender'));
       }
@@ -51,9 +55,9 @@ exports.saveUser = (req, res, next) => {
         return res.send(Utils.sendResponse(200, savedUser, [], 'User Saved Successfully'));
       })
     })
-    
+
   })
-    
+
 }
 
 /**
@@ -61,7 +65,9 @@ exports.saveUser = (req, res, next) => {
  */
 exports.forgotPassword = (req, res, next) => {
   const payload = req.body;
-  User.find({email: payload.email}, (userError, userRes) => {
+  User.find({
+    email: payload.email
+  }, (userError, userRes) => {
     if (userError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to fetch User details ... Please Try again'], 'Unable to fetch User details ... Please Try again'));
     }
@@ -83,7 +89,9 @@ exports.forgotPassword = (req, res, next) => {
 
 function updatePassword(userRes, req, res, next) {
   userRes[0].updatedDate = new Date().getMilliseconds();
-  User.updateOne({_id: userRes[0]._id}, userRes[0],(passwordUpdateError, passwordSuccess) => {
+  User.updateOne({
+    _id: userRes[0]._id
+  }, userRes[0], (passwordUpdateError, passwordSuccess) => {
     if (passwordUpdateError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to Update Password ... Please Try again'], 'Unable to Update Password ... Please Try again'));
     }
@@ -103,7 +111,9 @@ exports.resetPassword = (req, res, next) => {
   if (payload.confirmPassword !== payload.newPassword) {
     return res.send(Utils.sendResponse(401, null, ['New passord and confirm password should be same... Please try again ...'], 'New passord and confirm password should be same... Please try again ...'));
   }
-  User.find({password: payload.password}, (userError, userRes) => {
+  User.find({
+    password: payload.password
+  }, (userError, userRes) => {
     if (userError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to fetch User details ... Please Try again'], 'Unable to fetch User details ... Please Try again'));
     }
@@ -120,7 +130,10 @@ exports.resetPassword = (req, res, next) => {
  */
 exports.updateUserProfile = (req, res, next) => {
   const payload = req.body;
-  User.find({_id: payload._id, email: payload.email}, (userError, userRes) => {
+  User.find({
+    _id: payload._id,
+    email: payload.email
+  }, (userError, userRes) => {
     if (userError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to fetch User details ... Please Try again'], 'Unable to fetch User details ... Please Try again'));
     }
@@ -129,7 +142,9 @@ exports.updateUserProfile = (req, res, next) => {
     }
     const updateInfo = Object.assign(userRes[0], payload);
     updateInfo.updatedDate = new Date().getMilliseconds();
-    User.updateOne({_id: payload._id},updateInfo, (userUpdateError, userUpdateSuccess) => {
+    User.updateOne({
+      _id: payload._id
+    }, updateInfo, (userUpdateError, userUpdateSuccess) => {
       if (userUpdateError) {
         return res.send(Utils.sendResponse(500, null, ['Unable to update User ... Please try again ...'], 'Unable to update User ... Please try again ...'));
       }
@@ -144,10 +159,13 @@ exports.updateUserProfile = (req, res, next) => {
 }
 /**
  * User Login
-*/
+ */
 exports.login = (req, res, next) => {
   const payload = req.body;
-  User.find({email: payload.email, password: payload.password}, (loginError, loginSuccess) => {
+  User.find({
+    email: payload.email,
+    password: payload.password
+  }, (loginError, loginSuccess) => {
     if (loginError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to Login... Please try again...'], 'Unable to Login ... Please try again...'));
     }
@@ -155,7 +173,7 @@ exports.login = (req, res, next) => {
       return res.send(Utils.sendResponse(302, null, ['Please enter valid credentials ...'], 'Please enter valid credentials ...'));
     }
     delete loginSuccess[0].password;
-    return res.send(Utils.sendResponse(200, loginSuccess[0], [], 'Login Success...'));    
+    return res.send(Utils.sendResponse(200, loginSuccess[0], [], 'Login Success...'));
   })
 }
 
@@ -163,10 +181,13 @@ exports.login = (req, res, next) => {
  * Get user details by user id and Authorization Token
  */
 
- exports.getUserByUserId = (req, res, next) => {
-   const id = req.params.id;
-   const authToken = req.get('Authorization');
-   User.find({_id: id, authToken: authToken}, (userError, userRes) => {
+exports.getUserByUserId = (req, res, next) => {
+  const id = req.params.id;
+  const authToken = req.get('Authorization');
+  User.find({
+    _id: id,
+    authToken: authToken
+  }, (userError, userRes) => {
     if (userError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to get the user details... Please try again ...'], 'Unable to get the user details... Please try again ...'));
     }
@@ -175,28 +196,36 @@ exports.login = (req, res, next) => {
     }
     delete userRes[0].password;
     return res.send(Utils.sendResponse(200, userRes[0], [], 'User details fetched Successfully ...'));
-   })
- }
+  })
+}
 
- exports.getAllUsers = (req, res, next) => {
-   const id = req.params.id;
-   const authToken = req.get('Authorization');
-   User.find({_id: id, authToken: authToken, "role.role_id": ROLE_IDS.ADMIN}, (userError, userRes) => {
+exports.getAllUsers = (req, res, next) => {
+  const id = req.params.id;
+  const authToken = req.get('Authorization');
+  User.find({
+    _id: id,
+    authToken: authToken,
+    "role.role_id": ROLE_IDS.ADMIN
+  }, (userError, userRes) => {
     if (userError) {
       return res.send(Utils.sendResponse(500, null, ['Unable to get the user details... Please try again ...'], 'Unable to get the user details... Please try again ...'));
     }
     if (userRes.length <= 0) {
       return res.send(Utils.sendResponse(302, null, ['Invalid User... Please try with admin'], 'Invalid User... Please try with admin'));
     }
-    User.find({"role.role_id": ROLE_IDS.USER}, (usersListError, usersListSuccess) => {
+    User.find({
+      "role.role_id": ROLE_IDS.USER
+    }, (usersListError, usersListSuccess) => {
       if (usersListError) {
         return res.send(Utils.sendResponse(500, null, ['Unable to get the user details... Please try again ...'], 'Unable to get the user details... Please try again ...'));
       }
       if (usersListSuccess.length <= 0) {
         return res.send(Utils.sendResponse(302, usersListSuccess, [], 'No Users Exist ... '));
       }
-      usersListSuccess.forEach(function(v){ delete v.password});
+      usersListSuccess.forEach(function (v) {
+        delete v.password
+      });
       return res.send(Utils.sendResponse(200, usersListSuccess, [], 'User details fetched Successfully ...'));
     })
-   })
- }
+  })
+}
