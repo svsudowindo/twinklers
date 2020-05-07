@@ -11,7 +11,6 @@ adminRoutes.get('/get-all-users/:id', UserDAO.getAllUsers);
 
 adminRoutes.post('/create-product/:id', ProductDAO.createProduct);
 
-adminRoutes.get('/get-all-products-by-status', ProductDAO.getAllProductsByAdmin);
 
 
 exports.adminRoutes = adminRoutes;
