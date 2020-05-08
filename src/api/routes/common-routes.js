@@ -17,5 +17,6 @@ commonRoutes.get('/get-user-by-id/:id', UserDAO.getUserByUserId);
 commonRoutes.post('/image-uploader', upload.single('files'), imageUploadDAO.uploadImageAndGetURL);
 commonRoutes.get('/get-categories', CategoryDAO.getAllCategories);
 commonRoutes.get('/get-product-by-id/:productID', ProductDAO.getProductDetailsByAdminByID);
+commonRoutes.get('/get-all-products-by-status', ProductDAO.getAllProductsByAdmin);
 
 exports.commonRoutes = commonRoutes;

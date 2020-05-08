@@ -37,7 +37,7 @@ export const RequestEnums = {
     },
     GET_CATEGORY_LIST: {
         type: 'GET',
-        path: '/admin/get-categories',
+        path: '/common/get-categories',
         keys: [],
         values: []
     }
