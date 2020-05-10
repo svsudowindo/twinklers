@@ -5,7 +5,7 @@ var ProductsSchema = mongoose.Schema({
   categoryID: {
     type: Object,
     default: null
-},
+  },
   id: {
     type: String,
     required: true,
@@ -16,39 +16,37 @@ var ProductsSchema = mongoose.Schema({
     required: true
   },
   mrp: {
-      type: Number,
-      required: true
+    type: Number,
+    required: true
   },
   discountPrice: {
-      type: Number,
-      required: true,
-      default: 0
+    type: Number,
+    required: true,
+    default: 0
   },
   cost: {
-      type: Number,
-      required: true
+    type: Number,
+    required: true
   },
   availableStock: {
-      type: Number,
-      required: true
+    type: Number,
+    required: true
   },
   isStockAvailable: {
-      type: Boolean,
-      required: true
+    type: Boolean,
+    required: true
   },
   description: {
-      type: String,
-      required: true
+    type: String,
+    required: true
   },
-  images: [
-      {
-          name: String,
-          default: ''
-      }
-  ],
+  images: [{
+    url: String,
+    default: ''
+  }],
   rating: {
-      type: Number,
-      default: 0
+    type: Number,
+    default: 0
   },
   active: {
     type: Boolean,
