@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminModifyProductRoutingModule } from './admin-modify-product-routing.module';
 import { AdminModifyProductComponent } from './admin-modify-product.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -10,7 +11,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     AdminModifyProductRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class AdminModifyProductModule { }

@@ -46,6 +46,13 @@ export const RequestEnums = {
         path: '/admin/get-admin-dashboard',
         keys: [],
         values: []
+    },
+
+    CREATE_PRODUCT: {
+        type: 'POST',
+        path: '/admin/create-product/5eb1a7519a68d12c4cb3e974',
+        keys: [],
+        values: []
     }
 };
 
