@@ -53,6 +53,18 @@ export const RequestEnums = {
         path: '/admin/create-product/5eb1a7519a68d12c4cb3e974',
         keys: [],
         values: []
-    }
+    },
+    PRODUCTS_LIST: {
+        type: 'GET',
+        path: '/common/get-all-products-by-status',
+        keys: [],
+        values: []
+    },
+    PRODUCT_DETAILS: {
+        type: 'GET',
+        path: '/common/get-product-by-id/:id',
+        keys: [],
+        values: []
+    },
 };
 

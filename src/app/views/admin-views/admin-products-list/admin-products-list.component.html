@@ -24,23 +24,27 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products as i">
+        <tr *ngFor="let product of products  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
           <th scope="row">{{product.id}}</th>
-          <td>{{product.productName}}</td>
-          <td>{{product.category}}</td>
-          <td>{{product.updatedBy}}</td>
-          <td>{{product.updatedOn}}</td>
-          <td><i class="fa fa-trash" aria-hidden="true"></i>
+          <td>{{product.name | titlecase}}</td>
+          <td> <span *ngIf="product.categoryID!=null"> {{product.categoryID.name  }}</span>
+            <span *ngIf="product.categoryID==null"> All</span>
+          </td>
+          <td>{{product.updatedBy.firstName}}</td>
+          <td>{{product.updatedDate | date}}</td>
+          <td><i class="fa fa-trash cursor text-danger" (click)="deleteProduct(product.id)" aria-hidden="true"></i> &nbsp; &nbsp; &nbsp;
+            <i class="fa fa-pencil cursor text-success" routerLink="/admin/products-list/{{product.id}}"  aria-hidden="true"></i>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="d-flex justify-content-end  ">
     <select class="custom-select  " style="width: auto" [(ngModel)]="pageSize">
-      <option [ngValue]="2">2 items per page</option>
-      <option [ngValue]="4">4 items per page</option>
-      <option [ngValue]="6">6 items per page</option>
+      <ng-container *ngFor="let page of paginationArray" >
+        <option  [ngValue]="page.id">{{page.label}}</option>
+      </ng-container> 
     </select>
-    <ngb-pagination [collectionSize]="70" class="m-l-16" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+    <ngb-pagination [collectionSize]="products.length" class="m-l-16" [(page)]="page"
+    [pageSize]="pageSize" [boundaryLinks]="true"></ngb-pagination>
   </div>
 </div>
