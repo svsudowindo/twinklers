@@ -5,6 +5,7 @@ import { CommonRequestService } from 'src/app/shared/services/http/common-reques
 import { RequestEnums } from 'src/app/shared/constants/request-enums';
 import { HttpHeaders } from '@angular/common/http';
 import Utils from 'src/app/shared/services/common/utils';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 
 @Component({
   selector: 'app-admin-modify-product',
@@ -21,7 +22,11 @@ export class AdminModifyProductComponent implements OnInit {
   public serverErr = false;
   public product_id = null;
 
-  constructor(public fb:FormBuilder, private router:Router,private commonRequestService: CommonRequestService, public actroute:ActivatedRoute) { 
+  constructor(public fb:FormBuilder, 
+    private router:Router,
+    private commonRequestService: CommonRequestService, 
+    public actroute:ActivatedRoute,
+    private commonService: CommonService) { 
     this.product_id = this.actroute.snapshot.params.id;
   }
 
@@ -99,6 +104,8 @@ export class AdminModifyProductComponent implements OnInit {
     
   }
   createProduct(){ 
+    const userInfo = this.commonService.getUserInfo(); 
+    RequestEnums.CREATE_PRODUCT.path = '/admin/create-product/'+userInfo._id
     this.commonRequestService.request(RequestEnums.CREATE_PRODUCT,this.productForm.value).subscribe(data=>{ 
       if(data.errors.length > 0){
         this.serverErr = data.message;

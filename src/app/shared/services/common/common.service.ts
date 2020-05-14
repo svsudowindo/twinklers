@@ -3,6 +3,8 @@ import { LOCAL_STORAGE_ENUMS } from './../../constants/local-storage-enums';
 import { StorageService } from './../storage/storage.service';
 import { Injectable } from '@angular/core';
 import Utils from './utils';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ export class CommonService {
 
   constructor(
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private httpClient:HttpClient
   ) { }
 
   public getUserInfo() {
@@ -34,4 +37,26 @@ export class CommonService {
       this.router.navigate(['my-account', 'login']);
     }
   }
+
+ public getCountries():Observable<any>{ 
+    let authTokenHeaders: HttpHeaders =  new HttpHeaders();
+    authTokenHeaders = authTokenHeaders.append('Authorization', 'Bearer ' +  localStorage.getItem('contries_token'));
+    authTokenHeaders = authTokenHeaders.append('Accept', 'application/json'); 
+    return this.httpClient.get('https://www.universal-tutorial.com/api/countries', {headers: authTokenHeaders}); 
+ }
+
+ public getStates(state):Observable<any>{ 
+  let authTokenHeaders: HttpHeaders =  new HttpHeaders();
+  authTokenHeaders = authTokenHeaders.append('Authorization', 'Bearer ' +  localStorage.getItem('contries_token'));
+  authTokenHeaders = authTokenHeaders.append('Accept', 'application/json'); 
+  return this.httpClient.get('https://www.universal-tutorial.com/api/states/'+state, {headers: authTokenHeaders}); 
+}
+
+public getCities(city):Observable<any>{ 
+  let authTokenHeaders: HttpHeaders =  new HttpHeaders();
+  authTokenHeaders = authTokenHeaders.append('Authorization', 'Bearer ' +  localStorage.getItem('contries_token'));
+  authTokenHeaders = authTokenHeaders.append('Accept', 'application/json'); 
+  return this.httpClient.get('https://www.universal-tutorial.com/api/cities/'+city, {headers: authTokenHeaders}); 
+}
+
 }

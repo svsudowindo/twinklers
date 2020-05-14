@@ -50,7 +50,7 @@ export const RequestEnums = {
 
     CREATE_PRODUCT: {
         type: 'POST',
-        path: '/admin/create-product/5eb1a7519a68d12c4cb3e974',
+        path: '/admin/create-product/:id',
         keys: [],
         values: []
     },
