@@ -1,0 +1,57 @@
+<div class="d-flex flex-wrap  justify-content-center align-items-center">
+    <div class="card m-t-50" style="width: 22rem;">
+        <div class="card-body">
+            <div class="d-flex justify-content-center">
+                <div>
+                    <input type="file" id="img" hidden (change)="profileChange($event)" accept=".png, .jpg, .jpeg" multiple>
+                    <label for="img">
+                        <img [src]="profileImage" class="img" (error)="imgError()"/>
+                    </label>
+                </div>
+            </div>
+            <br>
+            <form [formGroup]="profileForm" (ngSubmit)="updateUserProfile()">
+                <div class="form-group h-px-75">
+                        <label for="registerEmail">First name </label>
+                        <input type="text" class="form-control" formControlName="firstName" required>
+                        <p class="error" *ngIf="isValidField(profileForm, 'firstName')">
+                            {{getErrorMessage(profileForm, validationMessages, 'firstName')}}
+                        </p>
+                </div>
+                <div class="form-group h-px-75">
+                    <label for="registerEmail"> Last name </label>
+                    <input type="text" class="form-control" formControlName="lastName" required>
+                    <p class="error" *ngIf="isValidField(profileForm, 'lastName')">
+                        {{getErrorMessage(profileForm, validationMessages, 'lastName')}}
+                    </p>
+                </div>
+                <div class="form-group h-px-75">
+                    <label for="registerEmail">Email </label>
+                    <input type="email" class="form-control" readonly id="registerEmail" formControlName="email" required>
+                    <p class="error" *ngIf="isValidField(profileForm, 'email')">
+                        {{getErrorMessage(profileForm, validationMessages, 'email')}}
+                    </p>
+                </div>
+                <div class="form-group h-px-75">
+                    <label for="registerPhonenumber">Phone Number</label>
+                    <input type="number" class="form-control" id="registerPhonenumber" formControlName="phoneNumber" required>
+                    <p class="error" *ngIf="isValidField(profileForm, 'phoneNumber')">
+                        {{getErrorMessage(profileForm, validationMessages, 'phoneNumber')}}
+                    </p>
+                </div>
+                <div class="size" class="form-group h-px-75" formGroupName="gender">
+                    <select class="custom-select" formControlName="gender_id" required>
+                        <option value="">Select Gender</option>
+                        <option [value]="gender.gender_id" *ngFor="let gender of gendersList">{{gender.name}}</option>
+                    </select>
+                    <p class="error" *ngIf="isValidField(profileForm.get('gender'), 'gender_id')">
+                        {{getErrorMessage(profileForm.get('gender'), validationMessages, 'gender_id')}}
+                    </p>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

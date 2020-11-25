@@ -1,18 +1,25 @@
-<nav class="navbar navbar-expand-lg nav fixed-top">
+<nav class="navbar navbar-expand-lg nav">
   <div class="container d-flex justify-content-between w-100">
     <ul class="navbar-nav mr-auto d-flex justify-content-between">
       <li class="nav-item pointer">
-        <p class="navbar-brand m-b-0 noselect" [routerLink]="['/dashboard']" routerLinkActive="active">Home</p>
+        <p class="navbar-brand m-b-0 noselect" [routerLink]="['/dashboard']" routerLinkActive="active">
+          <i class="fa fa-home" aria-hidden="true"></i>
+          Home</p>
       </li>
       <li class="nav-item pointer">
-        <p class="navbar-brand m-b-0 noselect" [routerLink]="['/products']" routerLinkActive="active">Products</p>
+        <p class="navbar-brand m-b-0 noselect" [routerLink]="['/products']" routerLinkActive="active">
+          <i class="fa fa-" aria-hidden="true"></i>
+          Products</p>
       </li>
     </ul>
     <div>
-      <p class="navbar-brand pointer" [routerLink]="['/admin']" routerLinkActive="active"><i class="fa fa-lock" aria-hidden="true"></i>
-        <span class="m-l-5 noselect" >Admin</span></p>
-      <p class="navbar-brand pointer"><i class="fa fa-user" aria-hidden="true"></i>
-        <span class="m-l-5 noselect">My Account</span></p>
+      <p class="navbar-brand pointer" [routerLink]="['/admin']" routerLinkActive="active" *ngIf="currentUser?.role.role_id === 1">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        <span class="m-l-5 noselect" >Admin</span>
+      </p>
+      <p class="navbar-brand pointer" [routerLink]="['/my-account']" routerLinkActive="active" (click)="navigateToMyAccount()">
+        <i [ngClass]="currentUser?.authToken ? 'fa fa-user' : 'fa fa-sign-in'" aria-hidden="true"></i>
+        <span class="m-l-5 noselect" >{{currentUser?.authToken ? 'My Account': 'Login'}}</span></p>
       <p class="navbar-brand pointer position-relative">
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         <span class="m-l-5 noselect">Cart</span>

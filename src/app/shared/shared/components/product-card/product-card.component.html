@@ -26,9 +26,9 @@
       </div>
       <div class="position-relative">
         <i class="fa fa-minus-square-o font-size-18 pointer" aria-hidden="true"
-          [ngClass]="product.productCount <= 0 ? 'disabled' : ''" (click)="decrementProductCount()"></i>&nbsp;
+          [ngClass]="product.productCount <= 0 ? 'disabled' : ''" (click)="decrementProductCount($event)"></i>&nbsp;
         <i class="fa fa-plus-square-o font-size-18 pointer" aria-hidden="true"
-          (click)="incrementProductCount()"></i>&nbsp;
+          (click)="incrementProductCount($event)"></i>&nbsp;
         <i class="fa fa-shopping-cart font-size-20 pointer" aria-hidden="true"></i>
         <div class="d-flex justify-content-center cart-count" *ngIf="product.productCount > 0">
           {{product.productCount}}

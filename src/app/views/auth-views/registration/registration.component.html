@@ -4,22 +4,48 @@
             <div class="d-flex flex-wrap  justify-content-center align-items-center">
                 <p class="custom">Registration</p>
             </div>
-            <form>
-                <div class="form-group">
-                    <label for="RegisterFulname">Full Name</label>
-                    <input type="text" class="form-control" id="RegisterFulname">
+            <br>
+            <form [formGroup]="registerForm" (ngSubmit)="userRegister()">
+                <div class="form-group h-px-75">
+                        <label for="registerEmail">First name </label>
+                        <input type="text" class="form-control" formControlName="firstName" required>
+                        <p class="error" *ngIf="isValidField(registerForm, 'firstName')">
+                            {{getErrorMessage(registerForm, validationMessages, 'firstName')}}
+                        </p>
                 </div>
-                <div class="form-group">
+                <div class="form-group h-px-75">
+                    <label for="registerEmail"> Last name </label>
+                    <input type="text" class="form-control" formControlName="lastName" required>
+                    <p class="error" *ngIf="isValidField(registerForm, 'lastName')">
+                        {{getErrorMessage(registerForm, validationMessages, 'lastName')}}
+                    </p>
+                </div>
+                <div class="form-group h-px-75">
                     <label for="registerEmail">Email </label>
-                    <input type="email" class="form-control" id="registerEmail">
+                    <input type="email" class="form-control" id="registerEmail" formControlName="email" required>
+                    <p class="error" *ngIf="isValidField(registerForm, 'email')">
+                        {{getErrorMessage(registerForm, validationMessages, 'email')}}
+                    </p>
                 </div>
-                <div class="form-group">
+                <div class="form-group h-px-75">
                     <label for="registerPhonenumber">Phone Number</label>
-                    <input type="number" class="form-control" id="registerPhonenumber">
+                    <input type="number" class="form-control" id="registerPhonenumber" formControlName="phoneNumber" required>
+                    <p class="error" *ngIf="isValidField(registerForm, 'phoneNumber')">
+                        {{getErrorMessage(registerForm, validationMessages, 'phoneNumber')}}
+                    </p>
+                </div>
+                <div class="size" class="form-group h-px-75" formGroupName="gender">
+                    <select class="custom-select" formControlName="gender_id" required>
+                        <option value="">Select Gender</option>
+                        <option [value]="gender.gender_id" *ngFor="let gender of gendersList">{{gender.name}}</option>
+                    </select>
+                    <p class="error" *ngIf="isValidField(registerForm.get('gender'), 'gender_id')">
+                        {{getErrorMessage(registerForm.get('gender'), validationMessages, 'gender_id')}}
+                    </p>
                 </div>
                 <div>
                     <label>
-                    <input type="checkbox"> I agree with terms & conditions</label>
+                        <input type="checkbox" formControlName="isTermsAndConditionsAccepted"> I agree with terms & conditions</label>
                 </div>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex justify-content-start">
@@ -29,14 +55,11 @@
                         <a [routerLink]="['/my-account/forgot-password']" class="btn btn-link">Forgot Password?</a>
                     </div>
                 </div>
-
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid || !registerForm.get('isTermsAndConditionsAccepted').value">Register</button>
                 </div>
             </form>
 
         </div>
-
-
     </div>
 </div>

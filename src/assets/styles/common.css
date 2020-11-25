@@ -3,7 +3,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.error {
+  color: red;
+  font-size: 12px;;
+}
 .pointer {
   cursor: pointer;
 }

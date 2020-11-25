@@ -33,6 +33,10 @@ const routes: Routes = [
     loadChildren: () => import('./views/admin-views/admin-dashboard/admin-dashboard.module').then(m => m.AdminDashboardModule)
   },
   {
+    path: 'my-account/user-management',
+    loadChildren: () => import('./views/user-views/user-management/user-management.module').then(m => m.UserManagementModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./views/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   },

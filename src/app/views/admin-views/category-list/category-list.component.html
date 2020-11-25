@@ -1,29 +1,45 @@
-<div class="d-flex flex-wrap  justify-content-center align-items-center">
-    <div class="card m-t-100" style="width: 70rem;">
-        <div class="card-body">
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-primary">Add Catagory</button>
-            </div>
-            <div>
-                <table class="table table-striped noselect  ">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Catagory</th>
-                            <th scope="col">Createddate</th>
-                            <th scope="col">Updateddate</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let item of items">
-                        <tr>
-                            <td>{{item.id}}</td>
-                            <td>{{ item.catagory }}</td>
-                            <td>{{ item.currentdate| date }}</td>
-                            <td>{{ item.updateddate | date }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+ <div class="container main">
+   <div class="row m-b-10 action-buttons">
+     <div class="col-sm-6 m-t-10">
+       <form style="width: 180px">
+         <div class="form-group">
+           <input type="text" placeholder="Search by Category or ID" class="form-control">
+         </div>
+       </form>
+     </div>
+
+     <div class="col-sm-6 m-t-10 text-right ">
+       <button class="success m-t-10" class="btn btn-outline-primary" (click)="open()">Create Category</button>
+     </div>
+   </div>
+   <div class="table-responsive">
+     <table class="table table-hover">
+       <thead>
+         <tr>
+           <th scope="col">Id</th>
+           <th scope="col">Category</th>
+           <th scope="col">Created By</th>
+           <th scope="col">Updated By</th>
+           <th scope="col">Created Date</th>
+           <th scope="col">Updated Date</th>
+           <th scope="col">Status</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let category of categories " (click)="open(category)">
+           <th>{{category.id}}</th>
+           <td>{{category.name}}</td>
+           <td>{{category.createdBy.userName}}</td>
+           <td>{{category.updatedBy.userName}}</td>
+           <td>{{category.createDate | date: 'MMM dd yyyy'}}</td>
+           <td>{{category.updatedDate | date: 'MMM dd yyyy'}}</td>
+           <td>
+             <span [ngClass]="category.active ? 'blue': 'light-grey'">
+               {{category.active ? 'Active' : 'Inactive'}}
+             </span>
+           </td>
+         </tr>
+       </tbody>
+     </table>
+   </div>
+ </div>

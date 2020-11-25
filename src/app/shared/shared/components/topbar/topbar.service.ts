@@ -1,3 +1,4 @@
+import { CommonService } from './../../../services/common/common.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -8,6 +9,7 @@ export class TopbarService {
   cartCount = 0;
   cartCountSubject = new BehaviorSubject(0);
 
+  userInfoChanged = new BehaviorSubject(false);
   // sample
 
   products = [
@@ -84,12 +86,18 @@ export class TopbarService {
       id: 8
     }
   ];
-  constructor() { }
+  constructor(
+    private commonService: CommonService
+  ) { }
 
   setCartCount(productArray) {
     const totalCartCount = productArray.map(obj => obj.productCount).reduce((sum, currentValue) => {
       return sum + currentValue;
     });
     this.cartCountSubject.next(totalCartCount);
+  }
+
+  setUserInfoChange(input: boolean) {
+    this.userInfoChanged.next(input);
   }
 }

@@ -1,3 +1,4 @@
+import { CanActivateService } from './../../../shared/services/guard-services/can-activate.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ForgotPasswordComponent } from './forgot-password.component';
@@ -5,10 +6,10 @@ import { ForgotPasswordComponent } from './forgot-password.component';
 
 const routes: Routes = [
   {
-    path:'',
-    component:ForgotPasswordComponent
+    path: '',
+    component: ForgotPasswordComponent,
+    canActivate: [CanActivateService]
   }
-  
 ];
 
 @NgModule({

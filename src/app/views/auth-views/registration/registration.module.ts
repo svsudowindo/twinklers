@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RegistrationRoutingModule } from './registration-routing.module';
 import { RegistrationComponent } from './registration.component';
-import { SharedModule } from 'src/app/shared/shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -11,7 +11,8 @@ import { SharedModule } from 'src/app/shared/shared/shared.module';
   declarations: [RegistrationComponent],
   imports: [
     CommonModule,
-    RegistrationRoutingModule,SharedModule,
+    RegistrationRoutingModule,
+    SharedModule
   ]
 })
 export class RegistrationModule { }

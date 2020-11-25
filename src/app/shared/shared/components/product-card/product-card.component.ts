@@ -24,11 +24,13 @@ export class ProductCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  incrementProductCount() {
+  incrementProductCount(event) {
+    event.stopPropagation();
     this.addItem.emit(this.product);
   }
 
   decrementProductCount() {
+    event.stopPropagation();
     this.removeItem.emit(this.product);
   }
 

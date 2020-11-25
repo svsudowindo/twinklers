@@ -4,14 +4,20 @@
             <div class="d-flex flex-wrap  justify-content-center align-items-center">
                 <p class="custom">Login</p>
             </div>
-            <form>
-                <div class="form-group">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-group h-px-75">
                     <label for="loginEmail1">Email </label>
-                    <input type="email" class="form-control" id="loginEmail1">
+                    <input type="email" class="form-control" id="loginEmail1" formControlName="email" required>
+                    <p class="error" *ngIf="isValidField(loginForm, 'email')">
+                        {{getErrorMessage(loginForm, validationMessages, 'email')}}
+                    </p>
                 </div>
-                <div class="form-group">
+                <div class="form-group h-px-75">
                     <label for="loginPassword">Password</label>
-                    <input type="password" class="form-control" id="loginPassword">
+                    <input type="password" class="form-control" id="loginPassword" formControlName="password" required>
+                    <p class="error" *ngIf="isValidField(loginForm, 'password')">
+                        {{getErrorMessage(loginForm, validationMessages, 'password')}}
+                    </p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex justify-content-start">
@@ -23,7 +29,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
                 </div>
             </form>
 
