@@ -30,5 +30,9 @@ export class TopbarComponent implements OnInit {
   navigateToMyAccount() {
     this.router.navigate(['my-account', 'login']);
   }
-
+  logout() {
+    localStorage.clear();
+    this.topbarService.setUserInfoChange(true);
+    this.router.navigate(['dashboard']);
+  }
 }

@@ -1,0 +1,25 @@
+.heading {
+    font-size: 24px;
+    color: darkblue;
+    font-weight: 500;
+}
+
+.stats {
+    font-size: 20px;
+    font-weight: 500;
+    color: saddlebrown
+}
+.card-body {
+    border-radius: 20px;
+}
+.card-body.color0 {
+    background-color: lightcyan !important;
+}
+
+.card-body.color1 {
+    background-color: blanchedalmond !important;
+}
+
+.card-body.color2 {
+    background-color: #8eb397ab !important;
+}

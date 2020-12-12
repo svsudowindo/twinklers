@@ -40,6 +40,12 @@ export const RequestEnums = {
         path: '/common/get-categories',
         keys: [],
         values: []
+    },
+    GET_DASHBOARD_DATA: {
+        type: 'GET',
+        path: '/admin/get-admin-dashboard',
+        keys: [],
+        values: []
     }
 };
 
